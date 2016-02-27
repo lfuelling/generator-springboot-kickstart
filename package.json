@@ -1,0 +1,32 @@
+{
+  "name": "generator-springboot-kickstart",
+  "version": "1.0.0",
+  "description": "A Yeoman generator for Webapp with Maven + SpringBoot + MongoDB + Mail",
+  "keywords": [
+    "yeoman-generator",
+    "Java",
+    "Spring",
+    "SpringBoot",
+    "Webapp",
+    "MongoDB",
+    "Mail"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://mzulft.k40s.net/lfuelling/generator-springboot-kickstart"
+  },
+  "author": "Lukas Fülling",
+  "license": "KOSSL",
+  "bugs": {
+    "url": "https://mzulft.k40s.net/lfuelling/generator-springboot-kickstart/issues"
+  },
+  "homepage": "https://mzulft.k40s.net/lfuelling/generator-springboot-kickstart",
+  "dependencies": {
+    "yeoman-generator": "0.x.x",
+    "chalk": "1.x.x"
+  }
+}

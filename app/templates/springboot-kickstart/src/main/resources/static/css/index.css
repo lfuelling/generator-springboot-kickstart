@@ -1,0 +1,273 @@
+body {
+    padding-top: 54px; /* height of the navbar */
+    padding-bottom: 128px;
+}
+
+.container {
+    margin-top: 32px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.footer .text-muted {
+    margin: 20px 0;
+}
+
+.infobox {
+    min-height: 200px;
+}
+
+#adminTerm { /* The actual terminal */
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
+    padding-right: 15px;
+    -webkit-box-shadow: -5px -5px 10px 20px rgba(0,0,0,1);
+    -moz-box-shadow: -5px -5px 10px 20px rgba(0,0,0,1);
+    box-shadow: -5px -5px 10px 20px rgba(0,0,0,1);
+    width: 700px;
+    height: 400px;
+    -webkit-transition: all 0.2s ease; /* Firefox */
+    -moz-transition: all 0.2s ease; /* WebKit */
+    -o-transition: all 0.2s ease; /* Opera */
+    transition: all 0.2s ease; /* Standard */
+    background-color: #000;
+    z-index: 9001; /* It's over 9000!!! */
+}
+
+#particles {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    z-index: -2;
+}
+
+.landotron {
+    top: 50%;
+    -webkit-transform: translateY(50%); /* Safari */
+    transform: translateY(50%);
+    display: block;
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+}
+
+.landotron::after {
+    background-image: url("../images/code.png");
+    opacity: 0.3;
+    content: " ";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.material-button-anim {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 127px 15px 17px;
+    text-align: center;
+    max-width: 256px;
+    margin: 0 auto 0;
+}
+
+.material-button {
+    position: relative;
+    top: 0;
+    z-index: 1;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5em;
+    color: #fff;
+    background: #212121;
+    border: 1px solid black;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,.275);
+    outline: none;
+}
+.material-button-toggle {
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+}
+.material-button-toggle span {
+    -webkit-transform: none;
+    transform:         none;
+    -webkit-transition: -webkit-transform .175s cubic-bezier(.175,.67,.83,.67);
+    transition:         transform .175s cubic-bezier(.175,.67,.83,.67);
+}
+.material-button-toggle.open {
+    -webkit-transform: scale(1.3,1.3);
+    transform:         scale(1.3,1.3);
+    -webkit-animation: toggleBtnAnim .175s;
+    animation:         toggleBtnAnim .175s;
+}
+.material-button-toggle.open span {
+    -webkit-transform: rotate(45deg);
+    transform:         rotate(45deg);
+    -webkit-transition: -webkit-transform .175s cubic-bezier(.175,.67,.83,.67);
+    transition:         transform .175s cubic-bezier(.175,.67,.83,.67);
+}
+
+#options {
+    height: 70px;
+}
+.option {
+    position: relative;
+}
+.option .option1,
+.option .option2,
+.option .option3 {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -webkit-transition: all .175s;
+    transition:         all .175s;
+}
+.option .option1 {
+    -webkit-transform: translate3d(65px,80px,0) scale(.8,.8);
+    transform:         translate3d(65px,80px,0) scale(.8,.8);
+}
+.option .option2 {
+    -webkit-transform: translate3d(0,80px,0) scale(.8,.8);
+    transform:         translate3d(0,80px,0) scale(.8,.8);
+}
+.option .option3 {
+    -webkit-transform: translate3d(-60px,80px,0) scale(.8,.8);
+    transform:         translate3d(-60px,80px,0) scale(.8,.8);
+}
+.option.scale-on .option1,
+.option.scale-on .option2,
+.option.scale-on .option3 {
+    filter: blur(0);
+    -webkit-filter: blur(0);
+    -webkit-transform: none;
+    transform:         none;
+    -webkit-transition: all .175s;
+    transition:         all .175s;
+}
+.option.scale-on .option2 {
+    -webkit-transform: translateY(-28px) translateZ(0);
+    transform:         translateY(-28px) translateZ(0);
+    -webkit-transition: all .175s;
+    transition:         all .175s;
+}
+
+@keyframes toggleBtnAnim {
+    0% {
+        -webkit-transform: scale(1,1);
+        transform:         scale(1,1);
+    }
+    25% {
+        -webkit-transform: scale(1.4,1.4);
+        transform:         scale(1.4,1.4);
+    }
+    75% {
+        -webkit-transform: scale(1.2,1.2);
+        transform:         scale(1.2,1.2);
+    }
+    100% {
+        -webkit-transform: scale(1.3,1.3);
+        transform:         scale(1.3,1.3);
+    }
+}
+@-webkit-keyframes toggleBtnAnim {
+    0% {
+        -webkit-transform: scale(1,1);
+        transform:         scale(1,1);
+    }
+    25% {
+        -webkit-transform: scale(1.4,1.4);
+        transform:         scale(1.4,1.4);
+    }
+    75% {
+        -webkit-transform: scale(1.2,1.2);
+        transform:         scale(1.2,1.2);
+    }
+    100% {
+        -webkit-transform: scale(1.3,1.3);
+        transform:         scale(1.3,1.3);
+    }
+}
+
+.ledit .ace_editor {
+    width: 100%;
+    height: 128px;
+}
+
+.label-tag {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.icon-size
+{
+    font-size: 64px;
+}
+
+textarea#levelsTextarea, textarea#levels {
+    height: 512px;
+    resize: none;
+}
+
+.card-fullwidth {
+    width: 100%;
+}
+
+.collapsebtn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.img-profile {
+    width: 64px;
+    height: 64px;
+    border-radius: 4px;
+}
+
+/* Button with integrated checkboxes. One of the dirtiest hacks I know */
+.badgebox
+{
+    /* Hiding the checkbox, but allowing it to be focused */
+    opacity: 0;
+}
+
+.badgebox + .badge
+{
+    /* Move the check mark away when unchecked */
+    text-indent: -999999px;
+    /* Makes the badge's width stay the same checked and unchecked */
+    width: 27px;
+}
+
+.badgebox:focus + .badge
+{
+    /* Set something to make the badge looks focused */
+    /* This really depends on the application, in my case it was: */
+
+    /* Adding a light border */
+    box-shadow: inset 0px 0px 5px;
+    /* Taking the difference out of the padding */
+}
+
+.badgebox:checked + .badge
+{
+    /* Move the check mark back when checked */
+    text-indent: 0;
+}
