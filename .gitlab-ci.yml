@@ -1,0 +1,35 @@
+image: node
+
+before_script:
+  - npm install
+
+stages:
+  - build
+
+build_skip_tests:
+  stage: build
+  script:
+    - npm link
+    - cd kram
+    - 
+  only:
+    - master
+
+build_with_tests:
+  stage: run-tests
+  script:
+    - mvn clean install
+  only:
+    - master
+
+build_dev_artifacts:
+  stage: build-artifacts
+  script:
+    - mvn clean compile assembly:single
+    - cp mongodb.conf target/
+    - cp kellanet.properties target/
+  only:
+    - master
+  artifacts:
+    paths:
+      - target/
