@@ -10,8 +10,7 @@ build:
   stage: build
   script:
     - npm link
-    - cd kram
-    - yo springboot-kickstart
+    - cd kram && yo springboot-kickstart
   only:
     - master
   artifacts:
