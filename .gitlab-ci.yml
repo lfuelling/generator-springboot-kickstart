@@ -6,7 +6,7 @@ before_script:
 stages:
   - build
 
-build_skip_tests:
+build:
   stage: build
   script:
     - npm link
