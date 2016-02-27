@@ -23,7 +23,7 @@ import java.util.HashMap;
 
 /**
  * This class is used to edit accounts.
- * @author Lukas F&uuml;lling (l.fuelling@micromata.de)
+ * @author Lukas F&uuml;lling (lerk@lerk.io)
  */
 @Controller
 @EnableAutoConfiguration

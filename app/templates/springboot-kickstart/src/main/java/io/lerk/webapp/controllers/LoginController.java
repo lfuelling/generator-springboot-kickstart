@@ -18,7 +18,7 @@ import java.util.HashMap;
 
 /**
  * Handles the login page.
- * @author Lukas F&uuml;lling (l.fuelling@micromata.de)
+ * @author Lukas F&uuml;lling (lerk@lerk.io)
  */
 @Controller
 @EnableAutoConfiguration

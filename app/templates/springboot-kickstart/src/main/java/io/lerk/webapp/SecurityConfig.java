@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * @author Lukas F&uuml;lling (l.fuelling@micromata.de)
+ * @author Lukas F&uuml;lling (lerk@lerk.io)
  */
 @Configuration
 @EnableWebSecurity

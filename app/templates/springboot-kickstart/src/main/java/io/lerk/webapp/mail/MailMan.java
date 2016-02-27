@@ -18,7 +18,7 @@ import java.util.Properties;
 
 /**
  * Class that handles Mail stuff.
- * @author Lukas F&uuml;lling (l.fuelling@micromata.de)
+ * @author Lukas F&uuml;lling (lerk@lerk.io)
  */
 @Component
 public class MailMan {

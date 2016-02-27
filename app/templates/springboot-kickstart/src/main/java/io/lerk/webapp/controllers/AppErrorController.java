@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Handles any error.
  *
- * @author Lukas F&uuml;lling (l.fuelling@micromata.de)
+ * @author Lukas F&uuml;lling (lerk@lerk.io)
  */
 @Controller
 @EnableAutoConfiguration

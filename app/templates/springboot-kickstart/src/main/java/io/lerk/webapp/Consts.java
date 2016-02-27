@@ -2,7 +2,7 @@ package io.lerk.webapp;
 
 /**
  * This class holds constants.
- * @author Lukas F&uuml;lling (l.fuelling@micromata.de)
+ * @author Lukas F&uuml;lling (lerk@lerk.io)
  */
 public class Consts {
     // ROLES
