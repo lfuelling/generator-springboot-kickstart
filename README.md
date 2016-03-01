@@ -36,3 +36,9 @@ resetSettings=true
 ```
 
 When using those, you'll have a clean setup after every build and a new root user is created every launch.
+
+### Using IntelliJ IDEA
+
+The generated app can run without problems using the following run configuration:
+
+![runconf](runconf.png)
