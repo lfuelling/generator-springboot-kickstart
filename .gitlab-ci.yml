@@ -9,7 +9,7 @@ stages:
 build:
   stage: build
   script:
-    - npm link
+    - npm test
   only:
     - master
   artifacts:
