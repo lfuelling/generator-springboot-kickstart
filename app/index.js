@@ -13,33 +13,36 @@ util.inherits(SpringGenerator, yeoman.Base);
 SpringGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
-  console.log(chalk.green(
-    '.     .       .  .   . .   .   . .    +  .             \n'+
-    '  .     .  :     .    .. :. .___---------___.          \n'+
-    '       .  .   .    .  :.:. _".^ .^ ^.  \'.. :"-_. .     \n'+
-  '    .  :       .  .  .:../:            . .^  :.:\.     \n'+
-  '        .   . :: +. :.:/: .   .    .        . . .:\    \n'+
-  ' .  :    .     . _ :::/:               .  ^ .  . .:\   \n'+
-  '  .. . .   . - : :.:./.                        .  .:\  \n'+
-  '  .      .     . :..|:                    .  .  ^. .:| \n'+
-  '    .       . : : ..||        .                . . !:| \n'+
-  '  .     . . . ::. ::\\(                           . :)/ \n'+
-  ' .   .     : . : .:.|. ######              .#######::| \n'+
-  '  :.. .  :-  : .:  ::|.#######           ..########:|  \n'+
-  ' .  .  .  ..  .  .. :\\ ########          :######## :/  \n'+
-  '  .        .+ :: : -.:\\ ########       . ########.:/   \n'+
-  '    .  .+   . . . . :.:\\. #######       #######..:/    \n'+
-  '      :: . . . . ::.:..:.\\           .   .   ..:/      \n'+
-  '   .   .   .  .. :  -::::.\\.       | |     . .:/       \n'+
-  '      .  :  .  .  .-:.":.::.\\             ..:/         \n'+
-  ' .      -.   . . . .: .:::.:.\\.           .:/          \n'+
-  '.   .   .  :      : ....::_:..:\\    O    :/            \n'+
-  '   .   .  .   .:. .. .  .: :.:.:\\       :/             \n'+
-  '     +   .   .   : . ::. :.:. .:.|\\  .:/|              \n'+
-  '     .         +   .  .  ...:: ..|  --.:|              \n'+
-  '.      . . .   .  .  . ... :..:.."(  ..)"              \n'+
-  ' .   .       .      :  .   .: ::/  .  .::\\             \n'+
-    chalk.blue('\nWelcome to the Spring Boot Webapp Generator by Lerk\n\n')));
+  console.log(chalk.dim(
+    '.     .       .  .   . .   .   . .    +  .             \n' +
+    '  .     .  :     .    .. :. .___---------___.          \n' +
+    '       .  .   .    .  :.:. _".^ .^ ^.  \'.. :"-_. .     \n' +
+    '    .  :       .  .  .:../:            . .^  :.:\\.     \n' +
+    '        .   . :: +. :.:/: .   .    .        . . .:\\    \n' +
+    ' .  :    .     . _ :::/:               .  ^ .  . .:\\   \n' +
+    '  .. . .   . - : :.:./.                        .  .:\\  \n' +
+    '  .      .     . :..|:                    .  .  ^. .:| \n' +
+    '    .       . : : ..||        .                . . !:| \n' +
+    '  .     . . . ::. ::\\(                           . :)/ \n' +
+    ' .   .     : . : .:.|. ######              .#######::| \n' +
+    '  :.. .  :-  : .:  ::|.#######           ..########:|  \n' +
+    ' .  .  .  ..  .  .. :\\ ########          :######## :/  \n' +
+    '  .        .+ :: : -.:\\ ########       . ########.:/   \n' +
+    '    .  .+   . . . . :.:\\. #######       #######..:/    \n' +
+    '      :: . . . . ::.:..:.\\           .   .   ..:/      \n' +
+    '   .   .   .  .. :  -::::.\\.       | |     . .:/       \n' +
+    '      .  :  .  .  .-:.":.::.\\             ..:/         \n' +
+    ' .      -.   . . . .: .:::.:.\\.           .:/          \n' +
+    '.   .   .  :      : ....::_:..:\\    O    :/            \n' +
+    '   .   .  .   .:. .. .  .: :.:.:\\       :/             \n' +
+    '     +   .   .   : . ::. :.:. .:.|\\  .:/|              \n' +
+    '     .         +   .  .  ...:: ..|  --.:|              \n' +
+    '.      . . .   .  .  . ... :..:.."(  ..)"              \n' +
+    ' .   .       .      :  .   .: ::/  .  .::\\             \n' +
+    chalk.blue('\nWelcome to the Spring Boot Webapp Generator by Lerk!')));
+
+  console.log(chalk.green('Newest feature: ') + chalk.white('You now can switch between Bootstrap 3 and 4.') +
+  "\n\n" + chalk.white('Please keep in mind that the frontend HTML is still for Bootstrap 4 and ' + chalk.red.underline('will') + ' look shitty on BS 3.\n\n'));
 
   var prompts = [
     {
@@ -64,6 +67,12 @@ SpringGenerator.prototype.askFor = function askFor() {
       type: 'confirm',
       name: 'useScmAndDm',
       message: '(4/4) Do you want to use SCM and Distribution Management?',
+      default: false
+    },
+    {
+      type: 'confirm',
+      name: 'useBootstrapAlpha',
+      message: '(4/4) Do you want to use Bootstrap 4 (alpha2)?',
       default: true
     }
   ];
@@ -73,6 +82,7 @@ SpringGenerator.prototype.askFor = function askFor() {
     this.baseName = props.baseName;
     this.useScmAndDm = props.useScmAndDm;
     this.serviceDescription = props.serviceDescription;
+    this.useBootstrapAlpha = props.useBootstrapAlpha;
 
     cb();
   }.bind(this));
@@ -122,16 +132,28 @@ SpringGenerator.prototype.app = function app() {
   this.template(resourceDirTemplate + 'locale/messages_de.properties', resourceDir + 'locale/messages_de.properties', this, {});
   this.template(resourceDirTemplate + 'locale/messages_en.properties', resourceDir + 'locale/messages_en.properties', this, {});
   // Resources - static/js
-  this.template(resourceDirTemplate + 'static/js/bootstrap.js', resourceDir + 'static/js/bootstrap.js', this, {});
-  this.template(resourceDirTemplate + 'static/js/bootstrap.min.js', resourceDir + 'static/js/bootstrap.min.js', this, {});
+  if (this.useBootstrapAlpha) {
+    this.template(resourceDirTemplate + 'static/js/bootstrap.js', resourceDir + 'static/js/bootstrap.js', this, {});
+    this.template(resourceDirTemplate + 'static/js/bootstrap.min.js', resourceDir + 'static/js/bootstrap.min.js', this, {});
+  } else {
+    this.template(resourceDirTemplate + 'static/js/bs3/bootstrap.js', resourceDir + 'static/js/bootstrap.js', this, {});
+    this.template(resourceDirTemplate + 'static/js/bs3/bootstrap.min.js', resourceDir + 'static/js/bootstrap.min.js', this, {});
+  }
   this.template(resourceDirTemplate + 'static/js/jquery.min.js', resourceDir + 'static/js/jquery.min.js', this, {});
   this.template(resourceDirTemplate + 'static/js/tether.min.js', resourceDir + 'static/js/tether.min.js', this, {});
   // Resources - static/css
-  this.template(resourceDirTemplate + 'static/css/bootstrap.css', resourceDir + 'static/css/bootstrap.css', this, {});
-  this.template(resourceDirTemplate + 'static/css/bootstrap.css.map', resourceDir + 'static/css/bootstrap.css.map', this, {});
-  this.template(resourceDirTemplate + 'static/css/bootstrap.min.css', resourceDir + 'static/css/bootstrap.min.css', this, {});
-  this.template(resourceDirTemplate + 'static/css/bootstrap.min.css.map', resourceDir + 'static/css/bootstrap.min.css.map', this, {});
-  this.template(resourceDirTemplate + 'static/css/glyphicons.css', resourceDir + 'static/css/glyphicons.css', this, {});
+  if (this.useBootstrapAlpha) {
+    this.template(resourceDirTemplate + 'static/css/bootstrap.css', resourceDir + 'static/css/bootstrap.css', this, {});
+    this.template(resourceDirTemplate + 'static/css/bootstrap.css.map', resourceDir + 'static/css/bootstrap.css.map', this, {});
+    this.template(resourceDirTemplate + 'static/css/bootstrap.min.css', resourceDir + 'static/css/bootstrap.min.css', this, {});
+    this.template(resourceDirTemplate + 'static/css/bootstrap.min.css.map', resourceDir + 'static/css/bootstrap.min.css.map', this, {});
+    this.template(resourceDirTemplate + 'static/css/glyphicons.css', resourceDir + 'static/css/glyphicons.css', this, {});
+  } else {
+    this.template(resourceDirTemplate + 'static/css/bs3/bootstrap.css', resourceDir + 'static/css/bootstrap.css', this, {});
+    this.template(resourceDirTemplate + 'static/css/bs3/bootstrap.css.map', resourceDir + 'static/css/bootstrap.css.map', this, {});
+    this.template(resourceDirTemplate + 'static/css/bs3/bootstrap.min.css', resourceDir + 'static/css/bootstrap.min.css', this, {});
+    this.template(resourceDirTemplate + 'static/css/bs3/bootstrap.min.css.map', resourceDir + 'static/css/bootstrap.min.css.map', this, {});
+  }
   //Resources - static/fonts
   this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.eot', resourceDir + 'static/fonts/glyphicons-halflings-regular.eot', this, {});
   this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.svg', resourceDir + 'static/fonts/glyphicons-halflings-regular.svg', this, {});

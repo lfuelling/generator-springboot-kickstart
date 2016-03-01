@@ -1,6 +1,6 @@
 {
   "name": "generator-springboot-kickstart",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Yeoman generator for a Webapp with Maven + SpringBoot + MongoDB + Mail + Bootstrap + I18N",
   "keywords": [
     "yeoman-generator",
@@ -9,7 +9,8 @@
     "SpringBoot",
     "Webapp",
     "MongoDB",
-    "Mail"
+    "Mail",
+    "Bootstrap"
   ],
   "main": "index.js",
   "scripts": {
