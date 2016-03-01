@@ -64,7 +64,7 @@ SpringGenerator.prototype.askFor = function askFor() {
       type: 'confirm',
       name: 'useScmAndDm',
       message: '(7/7) Do you want to use SCM and Distribution Management?',
-      default: false
+      default: true
     }
   ];
 
@@ -158,6 +158,7 @@ SpringGenerator.prototype.app = function app() {
   this.template('README.md', 'README.md', this, {});
 
   this.config.set('packageName', this.packageName);
+  this.config.set('useScmAndDm', this.useScmAndDm); // I'm unsure whether it's good to keep this saved...
   this.config.set('packageFolder', packageFolder);
 };
 
