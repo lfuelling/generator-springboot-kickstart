@@ -1,6 +1,6 @@
 {
   "name": "generator-springboot-kickstart",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Yeoman generator for a Webapp with Maven + SpringBoot + MongoDB + Mail + Bootstrap + I18N",
   "keywords": [
     "yeoman-generator",
@@ -20,18 +20,25 @@
     "type": "git",
     "url": "https://github.com/lfuelling/generator-springboot-kickstart"
   },
-  "author": "Lukas Fülling",
+  "author": {
+    "name": "Lukas Fülling",
+    "email": "lerk@lerk.io",
+    "url": "http://lerk.io"
+  },
   "license": "Beerware",
   "bugs": {
     "url": "https://mzulft.k40s.net/lfuelling/generator-springboot-kickstart/issues"
   },
-  "homepage": "https://mzulft.k40s.net/lfuelling/generator-springboot-kickstart",
+  "preferGlobal": true,
+  "homepage": "https://github.com/lfuelling/generator-springboot-kickstart/blob/master/README.md",
   "dependencies": {
+    "chalk": "1.x.x",
+    "yeoman-generator": "0.x.x"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
     "chai": "^3.5.0",
     "chai-fs": "^0.1.0",
-    "chalk": "1.x.x",
-    "mocha": "^2.4.5",
-    "yeoman-generator": "0.x.x",
     "yeoman-test": "^1.1.0"
   }
 }
