@@ -13,9 +13,7 @@ It has absolutely nothing to do with [Kickstart](http://getkickstart.com/) but w
 
 ## Quick install guide
 
-For those already using Node, Grunt, Bower and stuff.
-
-### via Yeoman
+You need to have [Node.js](https://nodejs.org) installed.
 
 	$ npm install -g yo
 	$ npm install -g generator-springboot-kickstart

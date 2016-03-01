@@ -13,14 +13,10 @@
                          alt="Profile pic." class="media-object img-profile" src="#"/>
                 </a>
                 <div class="media-body">
-                    <h4 class="media-heading"><span th:text="${greeting}">Hi there</span> <span
+                    <h4 class="media-heading">Hi there <span
                             th:text="${current_user.username}">Username</span></h4>
                     <form class="form pull-xs-right" th:action="@{/logout}" method="post">
-                        <div class="btn-group">
                             <button type="submit" class="btn btn-sm btn-danger-outline">Logout</button>
-                            <a href="#" th:href="@{/account}" class="btn btn-sm btn-info-outline"><span
-                                    class="glyphicon glyphicon-edit"></span> Edit Account</a>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -50,84 +46,5 @@
         </ul>
     </nav>
 </div>
-
-
-<!-- OLD NAVBAR START -->
-<nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="navbar_old">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" th:href="@{/}" th:text="${title}"></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a th:href="@{/}">Home</a></li>
-            </ul>
-            <form class="navbar-form navbar-right" sec:authorize="!hasRole('ROLE_USER')" th:action="@{/login}"
-                  method="post">
-                <div class="form-group">
-                    <input type="text" name="username" placeholder="Username" class="form-control"/>
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" placeholder="Password" class="form-control"/>
-                </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right" sec:authorize="hasRole('ROLE_USER')"
-                th:if="${current_user} != null">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"></span> 
-                        <strong th:text="${current_user.username}"></strong>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <div class="navbar-login">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="text-center">
-                                            <span th:if="${current_user.image} == null"
-                                                  class="glyphicon glyphicon-user icon-size"></span>
-                                            <img th:if="${current_user.image} != null" th:src="${current_user.image}"
-                                                 alt="Profile pic." style="height: 87px;width: 87px;" src="#"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <p class="text-left"><strong th:text="${current_user.username}">Nombre
-                                            Apellido</strong></p>
-                                        <p class="text-left small" th:text="${current_user.email}">
-                                            correoElectronico@email.com</p>
-                                        <p class="text-left">
-                                            <a href="#" th:href="@{/account}" class="btn btn-primary btn-block btn-sm">My
-                                                Account</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="navbar-login navbar-login-session">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <form class="navbar-form navbar-right" th:action="@{/logout}" method="post">
-                                            <button type="submit" class="btn btn-danger btn-block">Logout</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!--/.navbar-collapse -->
-    </div>
-</nav>
 </body>
 </html>

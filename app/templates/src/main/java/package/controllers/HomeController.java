@@ -2,7 +2,6 @@ package <%=packageName%>.controllers;
 
 import <%=packageName%>.Consts;
 import <%=packageName%>.MessageByLocaleService;
-import <%=packageName%>.Utils;
 import <%=packageName%>.entities.User;
 import <%=packageName%>.repositories.SysConfigRepository;
 import <%=packageName%>.repositories.UserRepository;

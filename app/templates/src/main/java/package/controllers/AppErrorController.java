@@ -2,7 +2,6 @@ package <%=packageName%>.controllers;
 
   import <%=packageName%>.Consts;
   import <%=packageName%>.MessageByLocaleService;
-  import <%=packageName%>.Utils;
   import <%=packageName%>.repositories.SysConfigRepository;
   import org.springframework.beans.factory.annotation.Autowired;
   import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -58,7 +57,6 @@ public class AppErrorController implements ErrorController {
     mav.addObject("template_file", "error");
     mav.addObject("template_id", "content");
     mav.addObject("current_user", "");
-    mav.addObject("greeting", Utils.getGreeting());
     mav.addObject("error_attrs", errorAttributes.getErrorAttributes(requestAttributes, getTraceParameter(aRequest)));
     return mav;
   }
