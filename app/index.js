@@ -45,25 +45,25 @@ SpringGenerator.prototype.askFor = function askFor() {
     {
       type: 'string',
       name: 'packageName',
-      message: '(1/7) What is your default package name?',
+      message: '(1/4) What is your default package name?',
       default: 'com.example.myapp'
     },
     {
       type: 'string',
       name: 'baseName',
-      message: '(2/7) What is the base name of the app?',
+      message: '(2/4) What is the base name of the app?',
       default: 'myapp'
     },
     {
       type: 'string',
       name: 'serviceDescription',
-      message: '(3/7) Give a short description of your project.',
+      message: '(3/4) Give a short description of your project.',
       default: 'This app does awesome things'
     },
     {
       type: 'confirm',
       name: 'useScmAndDm',
-      message: '(7/7) Do you want to use SCM and Distribution Management?',
+      message: '(4/4) Do you want to use SCM and Distribution Management?',
       default: true
     }
   ];
