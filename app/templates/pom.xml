@@ -81,14 +81,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <modules>
-        <module>
-            <%= baseName %>-model</module>
-        <module>
-            <%= baseName %>-rest</module>
-        <module>
-            <%= baseName %>-it</module>
-    </modules>
     <% if (useScmAndDm) { %>
         <scm>
             <url>https://github.com/example-org/example-rep.git</url>
@@ -128,7 +120,7 @@
                                 <manifest>
                                     <addClasspath>true</addClasspath>
                                     <classpathPrefix>lib/</classpathPrefix>
-                                    <mainClass>io.lerk.webapp.CodrApplication</mainClass>
+                                    <mainClass><%= packageName %>.App</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

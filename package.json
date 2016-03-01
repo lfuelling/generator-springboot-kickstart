@@ -13,7 +13,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,11 @@
   },
   "homepage": "https://mzulft.k40s.net/lfuelling/generator-springboot-kickstart",
   "dependencies": {
+    "chai": "^3.5.0",
+    "chai-fs": "^0.1.0",
+    "chalk": "1.x.x",
+    "mocha": "^2.4.5",
     "yeoman-generator": "0.x.x",
-    "chalk": "1.x.x"
+    "yeoman-test": "^1.1.0"
   }
 }
