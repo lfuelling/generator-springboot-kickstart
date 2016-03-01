@@ -84,7 +84,7 @@ SpringGenerator.prototype.app = function app() {
   // ----------------------------
   var packageFolder = this.packageName.replace(/\./g, '/');
   var javaDir = 'src/main/java/' + packageFolder + '/';
-  var resourceDir = 'src/main/resources';
+  var resourceDir = 'src/main/resources/';
   var basename = this.baseName + '/';
   chalk.white('basename is: ' + basename);
   chalk.white('package folder is: ' + javaDir);
