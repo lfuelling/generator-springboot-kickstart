@@ -103,7 +103,8 @@ public class App implements CommandLineRunner {
     // Set the config options
     ArrayList<Config> configList = new ArrayList<>();
     configList.add(new Config(Consts.KEY_APP_TITLE, "Webapp"));
-    configList.add(new Config(Consts.KEY_REGISTER_PUBLIC, "false"));
+    // registration is public by default.
+    configList.add(new Config(Consts.KEY_REGISTER_PUBLIC, "true"));
     // Do DB stuff
     sysConfigRepository.deleteAll();
     sysConfigRepository.save(configList);
