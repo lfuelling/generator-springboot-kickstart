@@ -9,7 +9,6 @@ It has absolutely nothing to do with [Kickstart](http://getkickstart.com/) but w
 ## Table of Contents
 
 - [Quick install guide](#quick-install-guide)
-- [Running the generator](#running-the-generator)
 - [Running the app](#running)
 
 ## Quick install guide
@@ -23,8 +22,6 @@ For those already using Node, Grunt, Bower and stuff.
 	$ yo springboot-kickstart
 
 ## Running
-
-### HTTPS
 
 Before your first run, you need to build a new keystore containing a valid SSL certificate. Instructions for this can be found [in the oracle docs](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html) or [on palantir's site](https://www.palantir.com/2008/06/pkcs12/) (I haven't tested the oracle one but it seems valid) The Palantir how to also covers the generation of the key itself.
 
