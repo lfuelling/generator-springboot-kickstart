@@ -14,6 +14,7 @@ package <%=packageName%>;
   import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
   import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
   import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+  import java.util.Locale;
 
 /**
  * Config class for all sorts of stuff.
@@ -31,7 +32,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
   public void addViewControllers(ViewControllerRegistry registry) {
     // homepage controller
     registry.addViewController("/").setViewName("platform");
-    registry.addViewController("/home").setViewName("platform");
     // login controller
     registry.addViewController("/login").setViewName("login");
     registry.addViewController("/register").setViewName("register");

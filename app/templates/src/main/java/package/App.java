@@ -10,13 +10,17 @@ package <%=packageName%>;
   import org.springframework.boot.CommandLineRunner;
   import org.springframework.boot.SpringApplication;
   import org.springframework.boot.autoconfigure.SpringBootApplication;
-  import org.springframework.context.annotation.Bean;
-  import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-  import org.springframework.web.servlet.LocaleResolver;
-  import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+  import javax.imageio.ImageIO;
+  import javax.xml.bind.DatatypeConverter;
+  import java.awt.*;
+  import java.awt.image.BufferedImage;
+  import java.io.ByteArrayOutputStream;
+  import java.io.IOException;
   import java.util.*;
+  import java.util.List;
   import java.util.stream.Collectors;
+
 
 /**
  * This is the main application class of the webapp.
@@ -102,7 +106,7 @@ public class App implements CommandLineRunner {
   private void writeDefaultSettings() {
     // Set the config options
     ArrayList<Config> configList = new ArrayList<>();
-    configList.add(new Config(Consts.KEY_APP_TITLE, "Webapp"));
+    configList.add(new Config(Consts.KEY_APP_TITLE, "<%=appName%>"));
     // registration is public by default.
     configList.add(new Config(Consts.KEY_REGISTER_PUBLIC, "true"));
     // Do DB stuff
@@ -120,9 +124,35 @@ public class App implements CommandLineRunner {
     root.setUsername("root");
     root.setAdminState(true);
     root.setEmail("root@webapp.local");
+    root.setImage(generateSomeImage());
     root.setPassword(UUID.randomUUID().toString().substring(0, 7));
     userRepository.save(root);
     logger.info("Created new root user.\n\n\tPassword: " + root.getPassword() + "\n");
+  }
+
+  private String generateSomeImage() {
+    int sz = 200;
+    BufferedImage image = new BufferedImage(
+      sz, sz, BufferedImage.TYPE_INT_ARGB);
+    // paint the image..
+    Graphics2D g = image.createGraphics();
+    g.setRenderingHint(
+      RenderingHints.KEY_ANTIALIASING,
+      RenderingHints.VALUE_ANTIALIAS_ON);
+    g.setColor(Color.WHITE);
+    for (int ii = 0; ii < sz; ii += 5) {
+      g.draw3DRect(ii, ii, sz - ii, sz - ii, true);
+    }
+    g.dispose();
+    // convert the image
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    try {
+      ImageIO.write(image, "png", baos);
+    } catch (IOException e) {
+      logger.error("Unable to unable.", e);
+    }
+    String data = DatatypeConverter.printBase64Binary(baos.toByteArray());
+    return "data:image/png;base64," + data;
   }
 
 }

@@ -58,6 +58,28 @@ public class HomeController {
         return mav;
     }
 
+  @RequestMapping("/in")
+  ModelAndView platform() {
+    ModelAndView mav = new ModelAndView();
+    // Use the templates/platform.html template
+    mav.setViewName("platform");
+    String appTitle = sysConfigRepository.findByKey(Consts.KEY_APP_TITLE).getValue();
+    mav.addObject("title", appTitle);
+    // Use the landing page for non-logged in users
+    mav.addObject("template_file", "backroom/content_main");
+    mav.addObject("template_id", "content");
+    // add the app title to the replaceables hashmap
+    HashMap<String, String> replaceables = new HashMap<>();
+    replaceables.put("%APPNAME%", appTitle);
+    // render the Homepage title while replacing %APPNAME% with the actual appname
+    mav.addObject("content_heading", messageByLocaleService.getMessage("home.page.title", replaceables));
+    // the description contains no variables, so we don't need to pass the hashmap here.
+    mav.addObject("content_lead", messageByLocaleService.getMessage("home.page.description"));
+    // add the current user (if it's null, I don't care)
+    mav.addObject("current_user", getCurrentUser());
+    return mav;
+  }
+
     /**
      * Returns the current user.
      * @return the current user

@@ -88,8 +88,7 @@ Desktop.ini
 /data/**
 /spring_loaded/**
 /deploy/**
-/<%= baseName %>-model/target
-/<%= baseName %>-rest/target
+target
 
 ######################
 # Logs

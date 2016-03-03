@@ -13,7 +13,7 @@ util.inherits(SpringGenerator, yeoman.Base);
 SpringGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
-  console.log(chalk.dim(
+  console.log(chalk.green(
     '.     .       .  .   . .   .   . .    +  .             \n' +
     '  .     .  :     .    .. :. .___---------___.          \n' +
     '       .  .   .    .  :.:. _".^ .^ ^.  \'.. :"-_. .     \n' +
@@ -48,31 +48,36 @@ SpringGenerator.prototype.askFor = function askFor() {
     {
       type: 'string',
       name: 'packageName',
-      message: '(1/4) What is your default package name?',
+      message: '(1/6) What is your default package name?',
       default: 'com.example.myapp'
     },
     {
       type: 'string',
       name: 'baseName',
-      message: '(2/4) What is the base name of the app?',
+      message: '(2/6) What is the base name of the app?',
       default: 'myapp'
+    },{
+      type: 'string',
+      name: 'appName',
+      message: '(3/6) What is the title of your Webapp?',
+      default: 'Webapp'
     },
     {
       type: 'string',
       name: 'serviceDescription',
-      message: '(3/4) Give a short description of your project.',
+      message: '(4/6) Give a short description of your project.',
       default: 'This app does awesome things'
     },
     {
       type: 'confirm',
       name: 'useScmAndDm',
-      message: '(4/4) Do you want to use SCM and Distribution Management?',
+      message: '(5/6) Do you want to use SCM and Distribution Management?',
       default: false
     },
     {
       type: 'confirm',
       name: 'useBootstrapAlpha',
-      message: '(4/4) Do you want to use Bootstrap 4 (alpha2)?',
+      message: '(6/6) Do you want to use Bootstrap 4 (alpha2)?',
       default: true
     }
   ];
@@ -83,7 +88,7 @@ SpringGenerator.prototype.askFor = function askFor() {
     this.useScmAndDm = props.useScmAndDm;
     this.serviceDescription = props.serviceDescription;
     this.useBootstrapAlpha = props.useBootstrapAlpha;
-
+    this.appName = props.appName;
     cb();
   }.bind(this));
 };
@@ -142,6 +147,7 @@ SpringGenerator.prototype.app = function app() {
   this.template(resourceDirTemplate + 'static/js/jquery.min.js', resourceDir + 'static/js/jquery.min.js', this, {});
   this.template(resourceDirTemplate + 'static/js/tether.min.js', resourceDir + 'static/js/tether.min.js', this, {});
   // Resources - static/css
+  this.template(resourceDirTemplate + 'static/css/index.css', resourceDir + 'static/css/index.css', this, {});
   if (this.useBootstrapAlpha) {
     this.template(resourceDirTemplate + 'static/css/bootstrap.css', resourceDir + 'static/css/bootstrap.css', this, {});
     this.template(resourceDirTemplate + 'static/css/bootstrap.css.map', resourceDir + 'static/css/bootstrap.css.map', this, {});
