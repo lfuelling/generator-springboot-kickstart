@@ -123,7 +123,7 @@ public class App implements CommandLineRunner {
     root.setId("0");
     root.setUsername("root");
     root.setAdminState(true);
-    root.setEmail("root@webapp.local");
+    root.setEmail("root@" + Consts.APPNAME.toLowerCase() + ".local");
     root.setImage(generateSomeImage());
     root.setPassword(UUID.randomUUID().toString().substring(0, 7));
     userRepository.save(root);

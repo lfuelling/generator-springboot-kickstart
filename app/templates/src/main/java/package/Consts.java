@@ -12,6 +12,7 @@ public class Consts {
   // SETTINGS KEYS
   public static final String KEY_APP_TITLE = "applicationTitle";
   public static final String KEY_REGISTER_PUBLIC = "registrationPublic";
+  public static final String APPNAME = "<%=appName%>";
   // Mail related stuff
-  public static final String MAIL_XMAILER = "Webapp Mailman";
+  public static final String MAIL_XMAILER = APPNAME + " Mailman";
 }

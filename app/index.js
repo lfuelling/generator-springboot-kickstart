@@ -59,14 +59,14 @@ SpringGenerator.prototype.askFor = function askFor() {
     },{
       type: 'string',
       name: 'appName',
-      message: '(3/6) What is the title of your Webapp?',
-      default: 'Webapp'
+      message: '(3/6) What is the title of your app?',
+      default: 'Demo App'
     },
     {
       type: 'string',
       name: 'serviceDescription',
       message: '(4/6) Give a short description of your project.',
-      default: 'This app does awesome things'
+      default: 'This app does awesome things.'
     },
     {
       type: 'confirm',
