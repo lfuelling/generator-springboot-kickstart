@@ -41,7 +41,7 @@ SpringGenerator.prototype.askFor = function askFor() {
     ' .   .       .      :  .   .: ::/  .  .::\\             \n' +
     chalk.blue('\nWelcome to the Spring Boot Webapp Generator by Lerk!')));
 
-  console.log(chalk.green('Newest feature: ') + chalk.white('You now can switch between Bootstrap 3 and 4.') +
+  console.log(chalk.green('Newest feature: ') + chalk.white('You can generate keys using a script.') +
   "\n\n" + chalk.white('Please keep in mind that the frontend HTML is still for Bootstrap 4 and ' + chalk.red.underline('will') + ' look shitty on BS 3.\n\n'));
 
   var prompts = [
@@ -184,6 +184,7 @@ SpringGenerator.prototype.app = function app() {
   this.template('.npmignore', '.gitignore', this, {});
   this.template('mongodb.conf', 'mongodb.conf', this, {});
   this.template('README.md', 'README.md', this, {});
+  this.template('generateKeystore.sh', 'generateKeystore.sh', this, {});
 
   this.config.set('packageName', this.packageName);
   this.config.set('useScmAndDm', this.useScmAndDm); // I'm unsure whether it's good to keep this saved...
