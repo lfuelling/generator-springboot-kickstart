@@ -24,6 +24,8 @@ You need to have [Node.js](https://nodejs.org) installed.
 
 Before your first run, you need to build a new keystore containing a valid SSL certificate. Instructions for this can be found [in the oracle docs](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html) or [on palantir's site](https://www.palantir.com/2008/06/pkcs12/) (I haven't tested the oracle one but it seems valid) The Palantir how to also covers the generation of the key itself.
 
+**Since 1.1.2** there is a `generateKeystore.sh` script in the output folder you can use to generate the keys. Please note that you need to run this in the root of the generated app.
+
 After that you need to update the SSL specific values in `./src/main/resources/application.properties` to match your setup. Alternatively you can place a `application.properties` file in the same folder as the jarfile is.
 
 1. Start MongoDB by running `mongod --config mongod.conf` in the project root (don't forget to create `data/db` and `log` directories or MongoDB will fail to start)
