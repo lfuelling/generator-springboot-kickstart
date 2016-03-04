@@ -30,7 +30,7 @@
     "url": "https://github.com/lfuelling/generator-springboot-kickstart/issues"
   },
   "preferGlobal": true,
-  "homepage": "https://github.com/lfuelling/generator-springboot-kickstart/blob/master/README.md",
+  "homepage": "https://www.npmjs.com/package/generator-springboot-kickstart",
   "dependencies": {
     "chalk": "1.x.x",
     "yeoman-generator": "0.x.x"
