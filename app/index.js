@@ -116,26 +116,33 @@ SpringGenerator.prototype.app = function app() {
   this.template(javaDirTemplate + 'MessageByLocaleService.java', javaDir + 'MessageByLocaleService.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   this.template(javaDirTemplate + 'MvcConfig.java', javaDir + 'MvcConfig.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   this.template(javaDirTemplate + 'SecurityConfig.java', javaDir + 'SecurityConfig.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+
   // Java - controllers
   this.template(javaDirTemplate + 'controllers/AppErrorController.java', javaDir + 'controllers/AppErrorController.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   this.template(javaDirTemplate + 'controllers/HomeController.java', javaDir + 'controllers/HomeController.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   this.template(javaDirTemplate + 'controllers/LoginController.java', javaDir + 'controllers/LoginController.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+
   // Java - entities
   this.template(javaDirTemplate + 'entities/Config.java', javaDir + 'entities/Config.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   this.template(javaDirTemplate + 'entities/User.java', javaDir + 'entities/User.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+
   // Java - mail
   this.template(javaDirTemplate + 'mail/MailMan.java', javaDir + 'mail/MailMan.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   this.template(javaDirTemplate + 'mail/MailProps.java', javaDir + 'mail/MailProps.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+
   // Java - repos
   this.template(javaDirTemplate + 'repositories/SysConfigRepository.java', javaDir + 'repositories/SysConfigRepository.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   this.template(javaDirTemplate + 'repositories/UserRepository.java', javaDir + 'repositories/UserRepository.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
 
+
   // Resources - base
   this.template(resourceDirTemplate + 'logback.xml', resourceDir + 'logback.xml', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   this.template(resourceDirTemplate + 'application.properties', resourceDir + 'application.properties', this, {});
+
   // Resources - locale
   this.template(resourceDirTemplate + 'locale/messages_de.properties', resourceDir + 'locale/messages_de.properties', this, {});
   this.template(resourceDirTemplate + 'locale/messages_en.properties', resourceDir + 'locale/messages_en.properties', this, {});
+
   // Resources - static/js
   if (this.useBootstrapAlpha) {
     this.template(resourceDirTemplate + 'static/js/bootstrap.js', resourceDir + 'static/js/bootstrap.js', this, {});
@@ -146,6 +153,7 @@ SpringGenerator.prototype.app = function app() {
   }
   this.template(resourceDirTemplate + 'static/js/jquery.min.js', resourceDir + 'static/js/jquery.min.js', this, {});
   this.template(resourceDirTemplate + 'static/js/tether.min.js', resourceDir + 'static/js/tether.min.js', this, {});
+
   // Resources - static/css
   this.template(resourceDirTemplate + 'static/css/index.css', resourceDir + 'static/css/index.css', this, {});
   if (this.useBootstrapAlpha) {
@@ -160,26 +168,55 @@ SpringGenerator.prototype.app = function app() {
     this.template(resourceDirTemplate + 'static/css/bs3/bootstrap.min.css', resourceDir + 'static/css/bootstrap.min.css', this, {});
     this.template(resourceDirTemplate + 'static/css/bs3/bootstrap.min.css.map', resourceDir + 'static/css/bootstrap.min.css.map', this, {});
   }
+
   //Resources - static/fonts
   this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.eot', resourceDir + 'static/fonts/glyphicons-halflings-regular.eot', this, {});
   this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.svg', resourceDir + 'static/fonts/glyphicons-halflings-regular.svg', this, {});
   this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.ttf', resourceDir + 'static/fonts/glyphicons-halflings-regular.ttf', this, {});
   this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.woff', resourceDir + 'static/fonts/glyphicons-halflings-regular.woff', this, {});
   this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.woff2', resourceDir + 'static/fonts/glyphicons-halflings-regular.woff2', this, {});
+
   // Resources - static/images
   this.template(resourceDirTemplate + 'static/images/usr_default.jpg', resourceDir + 'static/images/usr_default.jpg', this, {});
-  // Resources - templates
-  this.template(resourceDirTemplate + 'templates/register.html', resourceDir + 'templates/register.html', this, {});
-  this.template(resourceDirTemplate + 'templates/platform.html', resourceDir + 'templates/platform.html', this, {});
-  this.template(resourceDirTemplate + 'templates/login.html', resourceDir + 'templates/login.html', this, {});
-  // Resources - templates/fragments
-  this.template(resourceDirTemplate + 'templates/fragments/navbar.html', resourceDir + 'templates/fragments/navbar.html', this, {});
-  this.template(resourceDirTemplate + 'templates/fragments/footer.html', resourceDir + 'templates/fragments/footer.html', this, {});
-  this.template(resourceDirTemplate + 'templates/fragments/error.html', resourceDir + 'templates/fragments/error.html', this, {});
-  // Resources - templates/fragments/reception
-  this.template(resourceDirTemplate + 'templates/fragments/reception/content_landing.html', resourceDir + 'templates/fragments/reception/content_landing.html', this, {});
-  // Resources - templates/fragments/backroom
-  this.template(resourceDirTemplate + 'templates/fragments/backroom/content_main.html', resourceDir + 'templates/fragments/backroom/content_main.html', this, {});
+
+  if (this.useBootstrapAlpha) {
+
+    // Resources - templates
+    this.template(resourceDirTemplate + 'templates/register.html', resourceDir + 'templates/register.html', this, {});
+    this.template(resourceDirTemplate + 'templates/platform.html', resourceDir + 'templates/platform.html', this, {});
+    this.template(resourceDirTemplate + 'templates/login.html', resourceDir + 'templates/login.html', this, {});
+
+    // Resources - templates/fragments
+    this.template(resourceDirTemplate + 'templates/fragments/navbar.html', resourceDir + 'templates/fragments/navbar.html', this, {});
+    this.template(resourceDirTemplate + 'templates/fragments/footer.html', resourceDir + 'templates/fragments/footer.html', this, {});
+    this.template(resourceDirTemplate + 'templates/fragments/error.html', resourceDir + 'templates/fragments/error.html', this, {});
+
+    // Resources - templates/fragments/reception
+    this.template(resourceDirTemplate + 'templates/fragments/reception/content_landing.html', resourceDir + 'templates/fragments/reception/content_landing.html', this, {});
+
+    // Resources - templates/fragments/backroom
+    this.template(resourceDirTemplate + 'templates/fragments/backroom/content_main.html', resourceDir + 'templates/fragments/backroom/content_main.html', this, {});
+
+  } else {
+
+    // Resources - templates
+    this.template(resourceDirTemplate + 'templates/bs3/register.html', resourceDir + 'templates/register.html', this, {});
+    this.template(resourceDirTemplate + 'templates/bs3/platform.html', resourceDir + 'templates/platform.html', this, {});
+    this.template(resourceDirTemplate + 'templates/bs3/login.html', resourceDir + 'templates/login.html', this, {});
+
+    // Resources - templates/fragments
+    this.template(resourceDirTemplate + 'templates/bs3/fragments/navbar.html', resourceDir + 'templates/fragments/navbar.html', this, {});
+    this.template(resourceDirTemplate + 'templates/bs3/fragments/footer.html', resourceDir + 'templates/fragments/footer.html', this, {});
+    this.template(resourceDirTemplate + 'templates/bs3/fragments/error.html', resourceDir + 'templates/fragments/error.html', this, {});
+
+    // Resources - templates/fragments/reception
+    this.template(resourceDirTemplate + 'templates/bs3/fragments/reception/content_landing.html', resourceDir + 'templates/fragments/reception/content_landing.html', this, {});
+
+    // Resources - templates/fragments/backroom
+    this.template(resourceDirTemplate + 'templates/bs3/fragments/backroom/content_main.html', resourceDir + 'templates/fragments/backroom/content_main.html', this, {});
+
+  }
+
   // Base folder stuff
   this.template('.npmignore', '.gitignore', this, {});
   this.template('mongodb.conf', 'mongodb.conf', this, {});

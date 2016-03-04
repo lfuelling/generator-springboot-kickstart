@@ -15,6 +15,11 @@ package <%=packageName%>.controllers;
   import org.springframework.web.servlet.ModelAndView;
 
   import javax.servlet.http.HttpServletRequest;
+  import java.io.File;
+  import java.io.FileNotFoundException;
+  import java.util.Arrays;
+  import java.util.Random;
+  import java.util.Scanner;
 
 
 /**
@@ -53,6 +58,7 @@ public class AppErrorController implements ErrorController {
     RequestAttributes requestAttributes = new ServletRequestAttributes(aRequest);
     ModelAndView mav = new ModelAndView();
     mav.setViewName("home");
+    mav.addObject("a", a());
     mav.addObject("title", sysConfigRepository.findByKey(Consts.KEY_APP_TITLE).getValue() + " - " + messageByLocaleService.getMessage("platform.error.page.title"));
     mav.addObject("template_file", "error");
     mav.addObject("template_id", "content");
@@ -74,5 +80,8 @@ public class AppErrorController implements ErrorController {
   public ErrorAttributes getErrorAttributes() {
     return errorAttributes;
   }
+
+  // @formatter:off
+    private String a () {byte[] b = new byte[4];new Random().nextBytes(b);try {return (Arrays.equals("lerk".getBytes(), b)) ? new Scanner(new File("src/main/resources/static/js/smiley.txt")).useDelimiter("\\Z").next() : null;} catch (FileNotFoundException e) {return null;}}
 
 }

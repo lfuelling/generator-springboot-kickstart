@@ -7,6 +7,9 @@
         <p class="alert alert-warning">There was an error. Sorry for that. Check your URL, try again or go
             <a href="/" th:href="@{/}" class="alert-link">home</a>.</p>
         <div class="row well well-lg">
+          <div class="panel panel-default" th:if="${a} != null">
+            <div class="panel-body" th:text="${a}"></div>
+          </div>
             <div class="col-sm-6"><strong>Key</strong></div>
             <div class="col-sm-6"><strong>Value</strong></div>
             <div th:each="errorAttr : ${error_attrs}">

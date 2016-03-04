@@ -19,21 +19,21 @@ var kickstarter = window.kickstarter || {};
 /**
  * Namespace of the module.
  * Aliasing the jQuery Namespace via Self Invoking Anonymous Function.
- * @namespace modulName
+ * @namespace moduleName
  * @memberof kickstarter
  * @param 	{jQuery} $	passing the jQuery object to make $ available even when
  *                    	using jQuery.noConflict()
  */
-kickstarter.modulName = (function ($) {
+kickstarter.moduleName = (function ($) {
   'use strict';
 
   /**
    * Just an example public method that you could call from the global scope.
-   * @memberof kickstarter.modulName
+   * @memberof kickstarter.moduleName
    * @public
    * @param {string} message Message to write into the console.
    * @example
-   * kickstarter.modulName.yourPublicMethod('Hi Public.');
+   * kickstarter.moduleName.yourPublicMethod('Hi Public.');
    */
   var yourPublicMethod = function (message) {
     console.info(message);
@@ -42,7 +42,7 @@ kickstarter.modulName = (function ($) {
   /**
    * Just an example private method that you only can call from within this
    * module.
-   * @memberof kickstarter.modulName
+   * @memberof kickstarter.moduleName
    * @private
    * @param {string} message Message to write into the console.
    */
@@ -72,5 +72,5 @@ kickstarter.modulName = (function ($) {
 $(function () {
   'use strict';
 
-  kickstarter.modulName.yourPublicMethod('Hi public.');
+  kickstarter.moduleName.yourPublicMethod('Hi public.');
 });

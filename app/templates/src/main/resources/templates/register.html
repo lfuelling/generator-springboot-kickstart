@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
 
-    <title th:text="${title}"></title>
+  <title th:text="${title}"></title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link href="../static/css/glyphicons.css" th:href="@{/css/glyphicons.css}" rel="stylesheet"/>
-    <!--link href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}" rel="stylesheet"/-->
-    <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet"/>
-    <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet"/>
+  <!-- Bootstrap core CSS -->
+  <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+  <link href="../static/css/glyphicons.css" th:href="@{/css/glyphicons.css}" rel="stylesheet"/>
+  <!--link href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}" rel="stylesheet"/-->
+  <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet"/>
+  <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet"/>
 </head>
 
 <body>
@@ -25,63 +25,62 @@
 
 <div class="container">
 
-    <!-- Bootsnipp Code -->
-    <div class="container">
+  <!-- Bootsnipp Code -->
+  <div class="container">
 
-        <div id="loginbox" class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+    <div id="loginbox" class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="panel-title text-center" th:text="${title}"></div>
-                </div>
+      <div class="card">
+        <div class="card-block">
 
-                <div class="panel-body">
+          <h4 class="card-title text-center" th:text="${title}"></h4>
 
-                    <form th:action="@{/register}" th:object="${user}" name="form" id="form" class="form-horizontal"
-                          enctype="multipart/form-data" method="POST">
+          <form th:action="@{/register}" th:object="${user}" name="form" id="form" class="form-horizontal"
+                enctype="multipart/form-data" method="POST">
 
-                        <div class="input-group">
-                            <span class="input-group-addon">Username</span>
-                            <input id="username" type="text" class="form-control" name="username" value=""
-                                   placeholder="User" th:field="*{username}"/>
-                        </div>
+            <div class="input-group">
+              <span class="input-group-addon">Username</span>
+              <input id="username" type="text" class="form-control" name="username" value=""
+                     placeholder="User" th:field="*{username}"/>
+            </div>
 
-                        <div class="input-group">
-                            <span class="input-group-addon">Password</span>
-                            <input id="password" type="password" class="form-control" name="password"
-                                   placeholder="Password" th:field="*{password}"/>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Confirm</span>
-                            <input id="password2" type="password" th:field="*{id}" class="form-control" name="password2"
-                                   placeholder="Password"/>
-                        </div>
-                        <div class="form-group">
-                            <!-- Button -->
-                            <div class="col-sm-12 controls">
-                                <button type="submit" id="subbtn" class="btn btn-primary pull-right"> Login</button>
-                            </div>
-                        </div>
-                    </form>
+            <div class="input-group">
+              <span class="input-group-addon">Password</span>
+              <input id="password" type="password" class="form-control" name="password"
+                     placeholder="Password" th:field="*{password}"/>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">Confirm</span>
+              <input id="password2" type="password" th:field="*{id}" class="form-control" name="password2"
+                     placeholder="Password"/>
+            </div>
+            <div class="form-group">
+              <!-- Button -->
+              <div class="col-sm-12 controls">
+                <button type="submit" id="subbtn" class="btn btn-primary pull-right"> Login</button>
+              </div>
+            </div>
+          </form>
 
-                </div>
-                <div class="panel-footer">
+        </div>
+        <div class="card-footer" th:if="${param-error} != null || ${param.logout} != null">
                     <span th:if="${param.error}" class="text-danger text-center">
                         Invalid username and password.
                     </span>
                     <span th:if="${param.logout}" class="text-warning text-center">
                         You have been logged out.
                     </span>
-                </div>
-            </div>
         </div>
-    </div>
-    <!-- /Bootsnipp Code -->
 
-    <hr/>
-</div> <!-- /container -->
+      </div>
+    </div>
+  </div>
+  <hr/>
+</div>
+
+
 <footer th:replace="fragments/footer :: footer">
-    <p>&copy; 2015 Company, Inc.</p>
+  <p>&copy; 2015 Company, Inc.</p>
 </footer>
 
 
