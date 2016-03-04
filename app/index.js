@@ -13,36 +13,10 @@ util.inherits(SpringGenerator, yeoman.Base);
 SpringGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
-  console.log(chalk.green(
-    '.     .       .  .   . .   .   . .    +  .             \n' +
-    '  .     .  :     .    .. :. .___---------___.          \n' +
-    '       .  .   .    .  :.:. _".^ .^ ^.  \'.. :"-_. .     \n' +
-    '    .  :       .  .  .:../:            . .^  :.:\\.     \n' +
-    '        .   . :: +. :.:/: .   .    .        . . .:\\    \n' +
-    ' .  :    .     . _ :::/:               .  ^ .  . .:\\   \n' +
-    '  .. . .   . - : :.:./.                        .  .:\\  \n' +
-    '  .      .     . :..|:                    .  .  ^. .:| \n' +
-    '    .       . : : ..||        .                . . !:| \n' +
-    '  .     . . . ::. ::\\(                           . :)/ \n' +
-    ' .   .     : . : .:.|. ######              .#######::| \n' +
-    '  :.. .  :-  : .:  ::|.#######           ..########:|  \n' +
-    ' .  .  .  ..  .  .. :\\ ########          :######## :/  \n' +
-    '  .        .+ :: : -.:\\ ########       . ########.:/   \n' +
-    '    .  .+   . . . . :.:\\. #######       #######..:/    \n' +
-    '      :: . . . . ::.:..:.\\           .   .   ..:/      \n' +
-    '   .   .   .  .. :  -::::.\\.       | |     . .:/       \n' +
-    '      .  :  .  .  .-:.":.::.\\             ..:/         \n' +
-    ' .      -.   . . . .: .:::.:.\\.           .:/          \n' +
-    '.   .   .  :      : ....::_:..:\\    O    :/            \n' +
-    '   .   .  .   .:. .. .  .: :.:.:\\       :/             \n' +
-    '     +   .   .   : . ::. :.:. .:.|\\  .:/|              \n' +
-    '     .         +   .  .  ...:: ..|  --.:|              \n' +
-    '.      . . .   .  .  . ... :..:.."(  ..)"              \n' +
-    ' .   .       .      :  .   .: ::/  .  .::\\             \n' +
+  console.log(chalk.dim("                                     ,a,\r\n                                 ,lfo\"\"v6a,\r\n                             ,lfo\"\"      \"v6a,\r\n                         ,lfo\"\"             \"v6a,\r\n                     ,lfo\"\"                    \"v6a,\r\n                 ,lfo\"\"          ,lfoa,           \"v6a,\r\n             ,lfo\"\"          ,lfo\"\" \"8v6a,           \"v6a,\r\n         ,lfo\"\"          ,lfo\"\"      #  \"v6a,           \"v6a,\r\n     ,lfo\"\"          ,lfo\"\"         ,#.    \"v6a,           \"v6a,\r\n ,gPPR8,         ,lfo\"\"          ,lfo8a|      \"v6a,           \"v6a,\r\ndP'   `Yb    ,lfo\"\"          ,lfo\"\"   \"v6a,  ,lfo\"\"          ,lfo\"8\r\n8)     (8,lfo\"\"          ,lfo\"\"          v688\"\"          ,lfo\"\"   8\r\nYb     d8P\"          ,lfo\"\"          ,lfo\"\"          ,lfo\"\"       8\r\n \"8ggg8\"         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"          ,8\r\n             ,gPPR8,         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            dP'   `Yb    ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            8)     (8,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            Yb     d8P\"          ,lfo\"\"          ,lfo\"\"\r\n             \"8ggg8\"         ,lfo\"\"          ,lfo\"\"   \r\n                         ,gPPR8,         ,lfo\"\"       \r\n                        dP'   `Yb    ,lfo\"\"\r\n                        8)     (8,lfo\"\"\r\n                        Yb     d8P\"\r\n                         \"8ggg8\"" +
     chalk.blue('\nWelcome to the Spring Boot Webapp Generator by Lerk!')));
 
-  console.log(chalk.green('Newest feature: ') + chalk.white('You can generate keys using a script.') +
-  "\n\n" + chalk.white('Please keep in mind that the frontend HTML is still for Bootstrap 4 and ' + chalk.red.underline('will') + ' look shitty on BS 3.\n\n'));
+  console.log(chalk.green('Newest feature: ') + chalk.white('Bootstrap 3 HTML added.'));
 
   var prompts = [
     {
@@ -56,7 +30,7 @@ SpringGenerator.prototype.askFor = function askFor() {
       name: 'baseName',
       message: '(2/6) What is the base name of the app?',
       default: 'myapp'
-    },{
+    }, {
       type: 'string',
       name: 'appName',
       message: '(3/6) What is the title of your app?',
