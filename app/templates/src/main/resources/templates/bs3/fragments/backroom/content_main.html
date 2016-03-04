@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div th:fragment="content">
+  <div class="container">
+
+    <h2 th:text="${content_heading}"></h2>
+
+    <p class="lead" th:text="${content_lead}"></p>
+    <p><a href="#" class="btn btn-primary-outline btn-lg" th:href="@{/}" role="button">View
+      home &raquo;</a></p>
+  </div>
+</div>
+</body>
+</html>

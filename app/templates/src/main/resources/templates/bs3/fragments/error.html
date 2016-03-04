@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <h1>Error!</h1>
+        <p class="alert alert-warning">There was an error. Sorry for that. Check your URL, try again or go
+            <a href="/" th:href="@{/}" class="alert-link">home</a>.</p>
+        <div class="row well well-lg">
+            <div class="col-sm-6"><strong>Key</strong></div>
+            <div class="col-sm-6"><strong>Value</strong></div>
+            <div th:each="errorAttr : ${error_attrs}">
+                <div class="col-sm-6" th:text="${errorAttr.key}"></div>
+                <div class="col-sm-6" th:text="${errorAttr.value}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

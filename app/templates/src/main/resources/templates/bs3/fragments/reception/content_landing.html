@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div th:fragment="content">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron landotron">
+        <div class="container">
+            <h1 class="display-3" th:text="${content_heading}"></h1>
+            <p th:text="${content_lead}"></p>
+          <p><a href="#" class="btn btn-primary-outline btn-lg" th:href="@{/in}" role="button">View
+            members area &raquo;</a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
