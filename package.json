@@ -27,7 +27,7 @@
   },
   "license": "Beerware",
   "bugs": {
-    "url": "https://mzulft.k40s.net/lfuelling/generator-springboot-kickstart/issues"
+    "url": "https://github.com/lfuelling/generator-springboot-kickstart/issues"
   },
   "preferGlobal": true,
   "homepage": "https://github.com/lfuelling/generator-springboot-kickstart/blob/master/README.md",
