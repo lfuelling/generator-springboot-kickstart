@@ -3,7 +3,7 @@
 # SpringBoot Kickstart
 
 is a Yeoman generator that creates a basic SpringBoot application with basic authentication, Thymeleaf, `javax.mail` and MongoDB. Bootstrap 4 (alpha 2) is used on the frontend side. 
-Since v1.0.1 you can choose between Bootstrap 4 and 3.3.6 but **keep in mind** that the frontend HTML is still for Bootstrap 4 and may look shitty.
+Since v1.0.1 you can choose between Bootstrap 4 and 3.3.6 and since 1.1.4, the HTML templates were downgraded to look "good" using Bootstrap 3 (minor bugs may appear).
 
 It has absolutely nothing to do with [Kickstart](http://getkickstart.com/) but was inspired by [Bootstrap Kickstart](https://github.com/micromata/bootstrap-kickstart).
 
@@ -24,7 +24,7 @@ You need to have [Node.js](https://nodejs.org) installed.
 
 Before your first run, you need to build a new keystore containing a valid SSL certificate. Instructions for this can be found [in the oracle docs](https://docs.oracle.com/cd/E19509-01/820-3503/ggfhb/index.html) or [on palantir's site](https://www.palantir.com/2008/06/pkcs12/) (I haven't tested the oracle one but it seems valid) The Palantir how to also covers the generation of the key itself.
 
-**Since 1.1.2** there is a `generateKeystore.sh` script in the output folder you can use to generate the keys. Please note that you need to run this in the root of the generated app.
+**Since 1.1.2** there is a `generateKeystore.sh` script in the output folder you can use to generate the keys. Please note that you need to run this in the root of the generated app. (The script i actually working since 1.1.5)
 
 After that you need to update the SSL specific values in `./src/main/resources/application.properties` to match your setup. Alternatively you can place a `application.properties` file in the same folder as the jarfile is.
 
