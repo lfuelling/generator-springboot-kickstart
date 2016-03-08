@@ -2,7 +2,7 @@
 
 # SpringBoot Kickstart
 
-is a Yeoman generator that creates a basic SpringBoot application with basic authentication, Thymeleaf, `javax.mail` and MongoDB. Bootstrap 4 (alpha 2) is used on the frontend side. 
+is a Yeoman generator that creates a simple SpringBoot application with basic (password based) authentication, Thymeleaf, `javax.mail` and MongoDB. Bootstrap 4 (alpha 2) is used on the frontend side. 
 Since v1.0.1 you can choose between Bootstrap 4 and 3.3.6 and since 1.1.4, the HTML templates were downgraded to look "good" using Bootstrap 3 (minor bugs may appear).
 
 It has absolutely nothing to do with [Kickstart](http://getkickstart.com/) but was inspired by [Bootstrap Kickstart](https://github.com/micromata/bootstrap-kickstart).
