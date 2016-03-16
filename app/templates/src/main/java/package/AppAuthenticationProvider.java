@@ -1,23 +1,25 @@
-package <%=packageName%>;
+package<%=packageName%>;
 
-import <%=packageName%>.entities.User;
-import <%=packageName%>.repositories.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.stereotype.Component;
+  import<%=packageName%>.entities.User;
+  import<%=packageName%>.repositories.UserRepository;
+  import<%=packageName%>.PasswordStorage;
+  import org.slf4j.Logger;
+  import org.slf4j.LoggerFactory;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.security.authentication.AuthenticationProvider;
+  import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+  import org.springframework.security.core.Authentication;
+  import org.springframework.security.core.AuthenticationException;
+  import org.springframework.security.core.GrantedAuthority;
+  import org.springframework.security.core.authority.SimpleGrantedAuthority;
+  import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+  import java.util.ArrayList;
+  import java.util.List;
 
 /**
  * This is the authenticationProver we use to authenticate users.
+ *
  * @author Lukas F&uuml;lling (lerk@lerk.io)
  */
 @Component
@@ -32,44 +34,41 @@ public class AppAuthenticationProvider implements AuthenticationProvider {
 
   /**
    * Checks username and password with the stuff that's in the db.
+   *
    * @param authentication the authentication provided by the user
    * @return auth, if authenticated. Otherwise null.
    * @throws AuthenticationException
-     */
+   */
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-
-    // User's credentials
     String name = authentication.getName();
     String password = authentication.getCredentials().toString();
 
-    // Search the db for given username
     User user = userRepository.findByUsername(name);
 
     if (user == null) {
-      // If user doesn't exist, log and return null
       logger.error("Unable to find user: " + name);
       return null;
     } else {
-      if (password.equals(user.getPassword())) {
-        // If credentials are correct
-        List<GrantedAuthority> grantedAuths = new ArrayList<>();
-        grantedAuths.add(new SimpleGrantedAuthority(Consts.ROLE_USER));
-        try {
-          // Check if user is admin, if so add admin role
-          if (user.getAdminState()) {
-            grantedAuths.add(new SimpleGrantedAuthority(Consts.ROLE_ADMIN));
+      try {
+        if (PasswordStorage.verifyPassword(password, user.getPassword())) {
+          List<GrantedAuthority> grantedAuths = new ArrayList<>();
+          grantedAuths.add(new SimpleGrantedAuthority(Consts.ROLE_USER));
+          try {
+            if (user.getAdminState()) {
+              grantedAuths.add(new SimpleGrantedAuthority(Consts.ROLE_ADMIN));
+            }
+          } catch (NullPointerException npe) {
+            logger.info("Admin state was 'null' for user: " + name + ". Setting it to false to prevent future NullPointers");
+            user.setAdminState(false);
           }
-        } catch (NullPointerException npe) {
-          // If user's admin state is null, set it to false (should never happen because null booleans are returned as false)
-          logger.info("Admin state was 'null' for user: " + name + ". Setting it to false to prevent future NullPointers");
-          user.setAdminState(false);
+          Authentication auth = new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
+          return auth;
+        } else {
+          return null;
         }
-        // Return auth object
-        Authentication auth = new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
-        return auth;
-      } else {
-        // If credentials are wrong, return null
+      } catch (PasswordStorage.CannotPerformOperationException | PasswordStorage.InvalidHashException e) {
+        logger.error("Unable to check password!", e);
         return null;
       }
     }

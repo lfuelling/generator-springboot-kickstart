@@ -14,9 +14,9 @@ SpringGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
   console.log(chalk.dim("                                     ,a,\r\n                                 ,lfo\"\"v6a,\r\n                             ,lfo\"\"      \"v6a,\r\n                         ,lfo\"\"             \"v6a,\r\n                     ,lfo\"\"                    \"v6a,\r\n                 ,lfo\"\"          ,lfoa,           \"v6a,\r\n             ,lfo\"\"          ,lfo\"\" \"8v6a,           \"v6a,\r\n         ,lfo\"\"          ,lfo\"\"      #  \"v6a,           \"v6a,\r\n     ,lfo\"\"          ,lfo\"\"         ,#.    \"v6a,           \"v6a,\r\n ,gPPR8,         ,lfo\"\"          ,lfo8a|      \"v6a,           \"v6a,\r\ndP'   `Yb    ,lfo\"\"          ,lfo\"\"   \"v6a,  ,lfo\"\"          ,lfo\"8\r\n8)     (8,lfo\"\"          ,lfo\"\"          v688\"\"          ,lfo\"\"   8\r\nYb     d8P\"          ,lfo\"\"          ,lfo\"\"          ,lfo\"\"       8\r\n \"8ggg8\"         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"          ,8\r\n             ,gPPR8,         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            dP'   `Yb    ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            8)     (8,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            Yb     d8P\"          ,lfo\"\"          ,lfo\"\"\r\n             \"8ggg8\"         ,lfo\"\"          ,lfo\"\"   \r\n                         ,gPPR8,         ,lfo\"\"       \r\n                        dP'   `Yb    ,lfo\"\"\r\n                        8)     (8,lfo\"\"\r\n                        Yb     d8P\"\r\n                         \"8ggg8\"" +
-    chalk.blue('\nWelcome to the Spring Boot Webapp Generator by Lerk!')));
+    chalk.cyan('\n\nWelcome to the Spring Boot Webapp Generator by Lerk!')));
 
-  console.log(chalk.green('Newest feature: ') + chalk.white('Keygen script works!'));
+  console.log(chalk.green('Newest feature: ') + chalk.white('Passwords aren\'t stored as plaintext anymore.'));
 
   var prompts = [
     {
@@ -90,6 +90,7 @@ SpringGenerator.prototype.app = function app() {
   this.template(javaDirTemplate + 'MessageByLocaleService.java', javaDir + 'MessageByLocaleService.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   this.template(javaDirTemplate + 'MvcConfig.java', javaDir + 'MvcConfig.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   this.template(javaDirTemplate + 'SecurityConfig.java', javaDir + 'SecurityConfig.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+  this.template(javaDirTemplate + 'PasswordStorage.java', javaDir + 'PasswordStorage.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
 
   // Java - controllers
   this.template(javaDirTemplate + 'controllers/AppErrorController.java', javaDir + 'controllers/AppErrorController.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
