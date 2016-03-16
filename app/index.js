@@ -16,47 +16,61 @@ SpringGenerator.prototype.askFor = function askFor() {
   console.log(chalk.dim("                                     ,a,\r\n                                 ,lfo\"\"v6a,\r\n                             ,lfo\"\"      \"v6a,\r\n                         ,lfo\"\"             \"v6a,\r\n                     ,lfo\"\"                    \"v6a,\r\n                 ,lfo\"\"          ,lfoa,           \"v6a,\r\n             ,lfo\"\"          ,lfo\"\" \"8v6a,           \"v6a,\r\n         ,lfo\"\"          ,lfo\"\"      #  \"v6a,           \"v6a,\r\n     ,lfo\"\"          ,lfo\"\"         ,#.    \"v6a,           \"v6a,\r\n ,gPPR8,         ,lfo\"\"          ,lfo8a|      \"v6a,           \"v6a,\r\ndP'   `Yb    ,lfo\"\"          ,lfo\"\"   \"v6a,  ,lfo\"\"          ,lfo\"8\r\n8)     (8,lfo\"\"          ,lfo\"\"          v688\"\"          ,lfo\"\"   8\r\nYb     d8P\"          ,lfo\"\"          ,lfo\"\"          ,lfo\"\"       8\r\n \"8ggg8\"         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"          ,8\r\n             ,gPPR8,         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            dP'   `Yb    ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            8)     (8,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            Yb     d8P\"          ,lfo\"\"          ,lfo\"\"\r\n             \"8ggg8\"         ,lfo\"\"          ,lfo\"\"   \r\n                         ,gPPR8,         ,lfo\"\"       \r\n                        dP'   `Yb    ,lfo\"\"\r\n                        8)     (8,lfo\"\"\r\n                        Yb     d8P\"\r\n                         \"8ggg8\"" +
     chalk.cyan('\n\nWelcome to the Spring Boot Webapp Generator by Lerk!')));
 
-  console.log(chalk.green('Newest feature: ') + chalk.white('Passwords aren\'t stored as plaintext anymore.'));
+  console.log(chalk.green('Newest feature: ') + chalk.white('Docker integration!'));
 
   var prompts = [
     {
       type: 'string',
+      name: 'userName',
+      message: '(1/8) What is your name?',
+      default: 'John Doe'
+    },
+    {
+      type: 'string',
+      name: 'emailAddress',
+      message: '(2/8) What is your mail address?',
+      default: 'john@example.com'
+    },
+    {
+      type: 'string',
       name: 'packageName',
-      message: '(1/6) What is your default package name?',
+      message: '(3/8) What is your default package name?',
       default: 'com.example.myapp'
     },
     {
       type: 'string',
       name: 'baseName',
-      message: '(2/6) What is the base name of the app?',
+      message: '(4/8) What is the base name of the app?',
       default: 'myapp'
     }, {
       type: 'string',
       name: 'appName',
-      message: '(3/6) What is the title of your app?',
+      message: '(5/8) What is the title of your app?',
       default: 'Demo App'
     },
     {
       type: 'string',
       name: 'serviceDescription',
-      message: '(4/6) Give a short description of your project.',
+      message: '(6/8) Give a short description of your project.',
       default: 'This app does awesome things.'
     },
     {
       type: 'confirm',
       name: 'useScmAndDm',
-      message: '(5/6) Do you want to use SCM and Distribution Management?',
+      message: '(7/8) Do you want to use SCM and Distribution Management?',
       default: false
     },
     {
       type: 'confirm',
       name: 'useBootstrapAlpha',
-      message: '(6/6) Do you want to use Bootstrap 4 (alpha2)?',
+      message: '(8/8) Do you want to use Bootstrap 4 (alpha2)?',
       default: true
     }
   ];
 
   this.prompt(prompts, function (props) {
+    this.emailAddress = props.emailAddress;
+    this.userName = props.userName;
     this.packageName = props.packageName;
     this.baseName = props.baseName;
     this.useScmAndDm = props.useScmAndDm;
@@ -198,6 +212,12 @@ SpringGenerator.prototype.app = function app() {
   this.template('README.md', 'README.md', this, {});
   this.template('generateKeystore.sh', 'generateKeystore.sh', this, {});
 
+  // Docker stuff
+  this.template('docker/docker-compose.yml', 'docker-compose.yml', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+  this.template('docker/Dockerfile', 'docker/Dockerfile', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+
+  this.config.set('emailAddress', this.emailAddress);
+  this.config.set('userName', this.userName);
   this.config.set('packageName', this.packageName);
   this.config.set('useScmAndDm', this.useScmAndDm); // I'm unsure whether it's good to keep this saved...
   this.config.set('packageFolder', packageFolder);

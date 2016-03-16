@@ -1,0 +1,23 @@
+version: '2'
+services:
+
+  <%= baseName %>db:
+    image: mongo
+    environment:
+      - AUTH=no
+    volumes:
+      - datab:/data/db
+
+  <%= baseName %>app:
+    build: ./docker
+    links:
+      - <%= baseName %>db
+    ports:
+      - 8080:8080
+      - 8443:8443
+    volumes:
+      - logs:/<%= baseName %>/log
+
+volumes:
+  datab: {}
+  logs: {}
