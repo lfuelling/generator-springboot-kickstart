@@ -48,6 +48,8 @@ The generated app can run without problems using the following run configuration
 
 Since 1.3.0 there will be two new files created: `docker-compose.yml` and `docker/Dockerfile`. Those contain everything you need to run the webapp inside Docker.
 
+Since 1.3.1 Docker is optional.
+
 **Please note** that you need the latest version of Docker compose for this, because I'm using the new config file format.
 
 **Please note** that this will not run in Mac OS X or Windows, [because MongoDB can't handle vboxfs](https://github.com/docker-library/mongo/issues/30).

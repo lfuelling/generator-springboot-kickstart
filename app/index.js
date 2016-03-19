@@ -22,54 +22,54 @@ SpringGenerator.prototype.askFor = function askFor() {
     {
       type: 'string',
       name: 'userName',
-      message: '(1/8) What is your name?',
+      message: '(1/9) What is your name?',
       default: 'John Doe'
     },
     {
       type: 'string',
       name: 'emailAddress',
-      message: '(2/8) What is your mail address?',
+      message: '(2/9) What is your mail address?',
       default: 'john@example.com'
     },
     {
       type: 'string',
       name: 'packageName',
-      message: '(3/8) What is your default package name?',
+      message: '(3/9) What is your default package name?',
       default: 'com.example.myapp'
     },
     {
       type: 'string',
       name: 'baseName',
-      message: '(4/8) What is the base name of the app?',
+      message: '(4/9) What is the base name of the app?',
       default: 'myapp'
     }, {
       type: 'string',
       name: 'appName',
-      message: '(5/8) What is the title of your app?',
+      message: '(5/9) What is the title of your app?',
       default: 'Demo App'
     },
     {
       type: 'string',
       name: 'serviceDescription',
-      message: '(6/8) Give a short description of your project.',
+      message: '(6/9) Give a short description of your project.',
       default: 'This app does awesome things.'
     },
     {
       type: 'confirm',
       name: 'useScmAndDm',
-      message: '(7/8) Do you want to use SCM and Distribution Management?',
+      message: '(7/9) Do you want to use SCM and Distribution Management?',
       default: false
     },
     {
       type: 'confirm',
       name: 'useBootstrapAlpha',
-      message: '(8/8) Do you want to use Bootstrap 4 (alpha2)?',
+      message: '(8/9) Do you want to use Bootstrap 4 (alpha2)?',
       default: true
     },
     {
       type: 'confirm',
       name: 'useDocker',
-      message: '(8/8) Do you want to use Docker?',
+      message: '(9/9) Do you want to use Docker?',
       default: true
     }
   ];
