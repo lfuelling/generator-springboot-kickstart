@@ -1,4 +1,4 @@
-[![Unicorn](https://img.shields.io/badge/unicorn-approved-ff69b4.svg?style=flat)](https://www.youtube.com/watch?v=qRC4Vk6kisY)
+[![Unicorn](https://img.shields.io/badge/unicorn-approved-ff69b4.svg?style=flat)](https://www.youtube.com/watch?v=qRC4Vk6kisY) [![Dependency Status](https://david-dm.org/lfuelling/generator-springboot-kickstart.svg)](https://david-dm.org/lfuelling/generator-springboot-kickstart) [![Downloads](https://img.shields.io/npm/dm/generator-springboot-kickstart.svg)](https://img.shields.io/) [![Version](https://img.shields.io/npm/v/generator-springboot-kickstart.svg)](https://img.shields.io/)
 
 # SpringBoot Kickstart
 
@@ -48,6 +48,8 @@ The generated app can run without problems using the following run configuration
 
 Since 1.3.0 there will be two new files created: `docker-compose.yml` and `docker/Dockerfile`. Those contain everything you need to run the webapp inside Docker.
 
+Since 1.3.1 Docker is optional.
+
 **Please note** that you need the latest version of Docker compose for this, because I'm using the new config file format.
 
 **Please note** that this will not run in Mac OS X or Windows, [because MongoDB can't handle vboxfs](https://github.com/docker-library/mongo/issues/30).
@@ -56,6 +58,6 @@ To run your app as a Docker container you need to follow this steps:
 
 1. [Start the webapp](#running) at least once to make sure there are no errors
 2. **(you can skip this, if you used the keygen script)** Edit line 20 of the Dockerfile and replace the `../development.pkcs12` with the name of the keystore you are using
-3. In the root directory of your project run `docker-compose build` in a terminal ant let it build the needed images
+3. In the root directory of your project run `docker-compose build` in a terminal and let it build the needed images
 4. Still in the root directory run `docker-compose up`
 5. Go to `http://[your-docker-host]:8080`
