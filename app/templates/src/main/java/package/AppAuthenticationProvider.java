@@ -1,8 +1,8 @@
-package<%=packageName%>;
+package <%=packageName%>;
 
-  import<%=packageName%>.entities.User;
-  import<%=packageName%>.repositories.UserRepository;
-  import<%=packageName%>.PasswordStorage;
+  import <%=packageName%>.entities.User;
+  import <%=packageName%>.repositories.UserRepository;
+  import <%=packageName%>.PasswordStorage;
   import org.slf4j.Logger;
   import org.slf4j.LoggerFactory;
   import org.springframework.beans.factory.annotation.Autowired;
