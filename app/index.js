@@ -221,6 +221,7 @@ SpringGenerator.prototype.app = function app() {
 
   // Docker stuff
   if (this.useDocker) {
+    this.template('startDocker.sh', 'startDocker.sh', this, {});
     this.template('docker/docker-compose.yml', 'docker-compose.yml', this, {'interpolate': /<%=([\s\S]+?)%>/g});
     this.template('docker/Dockerfile', 'docker/Dockerfile', this, {'interpolate': /<%=([\s\S]+?)%>/g});
   }
