@@ -1,11 +1,11 @@
-package<%=packageName%>.controllers;
+package <%=packageName%>.controllers;
 
-  import<%=packageName%>.Consts;
-  import<%=packageName%>.MessageByLocaleService;
-  import<%=packageName%>.entities.User;
-  import<%=packageName%>.repositories.SysConfigRepository;
-  import<%=packageName%>.repositories.UserRepository;
-  import<%=packageName%>.PasswordStorage;
+  import <%=packageName%>.Consts;
+  import <%=packageName%>.MessageByLocaleService;
+  import <%=packageName%>.entities.User;
+  import <%=packageName%>.repositories.SysConfigRepository;
+  import <%=packageName%>.repositories.UserRepository;
+  import <%=packageName%>.PasswordStorage;
   import org.springframework.beans.factory.annotation.Autowired;
   import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
   import org.springframework.stereotype.Controller;
