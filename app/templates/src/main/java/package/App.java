@@ -125,9 +125,10 @@ public class App implements CommandLineRunner {
     root.setAdminState(true);
     root.setEmail("root@" + Consts.APPNAME.toLowerCase() + ".local");
     root.setImage(generateSomeImage());
-    root.setPassword(UUID.randomUUID().toString().substring(0, 7));
+    String password = UUID.randomUUID().toString().substring(0, 7);
+    root.setPassword(PasswordStorage.createHash(password));
     userRepository.save(root);
-    logger.info("Created new root user.\n\n\tPassword: " + root.getPassword() + "\n");
+    logger.info("Created new root user.\n\n\tPassword: " + password + "\n");
   }
 
   private String generateSomeImage() {
