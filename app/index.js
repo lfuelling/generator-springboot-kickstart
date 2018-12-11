@@ -49,7 +49,7 @@ module.exports = class extends Generator {
         type: 'confirm',
         name: 'useScmAndDm',
         message: '(7/9) Do you want to use SCM and Distribution Management?',
-        default: false
+        default: true
       },
       {
         type: 'confirm',
@@ -62,6 +62,12 @@ module.exports = class extends Generator {
         name: 'useDocker',
         message: '(9/9) Do you want to use Docker?',
         default: true
+      },
+      {
+        type: 'confirm',
+        name: 'useCustomMavenRepos',
+        message: '(9/9) Do you want to use custom maven repos?',
+        default: false
       }
     ];
 
@@ -75,6 +81,7 @@ module.exports = class extends Generator {
       this.useBootstrapLegacy = props.useBootstrapLegacy;
       this.appName = props.appName;
       this.useDocker = props.useDocker;
+      this.useCustomMavenRepos = props.useCustomMavenRepos;
     });
   }
 
