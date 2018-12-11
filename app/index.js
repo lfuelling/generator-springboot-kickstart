@@ -1,238 +1,233 @@
 'use strict';
-var util = require('util');
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
 
-var SpringGenerator = module.exports = function SpringGenerator(args, options, config) {
-  yeoman.Base.apply(this, arguments);
-};
+module.exports = class extends Generator {
+  prompting() {
+    console.log(chalk.dim("                                     ,a,\r\n                                 ,lfo\"\"v6a,\r\n                             ,lfo\"\"      \"v6a,\r\n                         ,lfo\"\"             \"v6a,\r\n                     ,lfo\"\"                    \"v6a,\r\n                 ,lfo\"\"          ,lfoa,           \"v6a,\r\n             ,lfo\"\"          ,lfo\"\" \"8v6a,           \"v6a,\r\n         ,lfo\"\"          ,lfo\"\"      #  \"v6a,           \"v6a,\r\n     ,lfo\"\"          ,lfo\"\"         ,#.    \"v6a,           \"v6a,\r\n ,gPPR8,         ,lfo\"\"          ,lfo8a|      \"v6a,           \"v6a,\r\ndP'   `Yb    ,lfo\"\"          ,lfo\"\"   \"v6a,  ,lfo\"\"          ,lfo\"8\r\n8)     (8,lfo\"\"          ,lfo\"\"          v688\"\"          ,lfo\"\"   8\r\nYb     d8P\"          ,lfo\"\"          ,lfo\"\"          ,lfo\"\"       8\r\n \"8ggg8\"         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"          ,8\r\n             ,gPPR8,         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            dP'   `Yb    ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            8)     (8,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            Yb     d8P\"          ,lfo\"\"          ,lfo\"\"\r\n             \"8ggg8\"         ,lfo\"\"          ,lfo\"\"   \r\n                         ,gPPR8,         ,lfo\"\"       \r\n                        dP'   `Yb    ,lfo\"\"\r\n                        8)     (8,lfo\"\"\r\n                        Yb     d8P\"\r\n                         \"8ggg8\"" +
+      chalk.cyan('\n\nWelcome to the Spring Boot Webapp Generator by Lerk!')));
 
-util.inherits(SpringGenerator, yeoman.Base);
+    console.log(chalk.green('Newest feature: ') + chalk.white('\'git init\' is now run automatically'));
 
-SpringGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
+    const prompts = [
+      {
+        type: 'string',
+        name: 'userName',
+        message: '(1/9) What is your name?',
+        default: 'John Doe'
+      },
+      {
+        type: 'string',
+        name: 'emailAddress',
+        message: '(2/9) What is your mail address?',
+        default: 'john@example.com'
+      },
+      {
+        type: 'string',
+        name: 'packageName',
+        message: '(3/9) What is your default package name?',
+        default: 'com.example.myapp'
+      },
+      {
+        type: 'string',
+        name: 'baseName',
+        message: '(4/9) What is the base name of the app?',
+        default: 'myapp'
+      }, {
+        type: 'string',
+        name: 'appName',
+        message: '(5/9) What is the title of your app?',
+        default: 'Demo App'
+      },
+      {
+        type: 'string',
+        name: 'serviceDescription',
+        message: '(6/9) Give a short description of your project.',
+        default: 'This app does awesome things.'
+      },
+      {
+        type: 'confirm',
+        name: 'useScmAndDm',
+        message: '(7/9) Do you want to use SCM and Distribution Management?',
+        default: false
+      },
+      {
+        type: 'confirm',
+        name: 'useBootstrapAlpha',
+        message: '(8/9) Do you want to use Bootstrap 4 (alpha2)?',
+        default: true
+      },
+      {
+        type: 'confirm',
+        name: 'useDocker',
+        message: '(9/9) Do you want to use Docker?',
+        default: true
+      }
+    ];
 
-  console.log(chalk.dim("                                     ,a,\r\n                                 ,lfo\"\"v6a,\r\n                             ,lfo\"\"      \"v6a,\r\n                         ,lfo\"\"             \"v6a,\r\n                     ,lfo\"\"                    \"v6a,\r\n                 ,lfo\"\"          ,lfoa,           \"v6a,\r\n             ,lfo\"\"          ,lfo\"\" \"8v6a,           \"v6a,\r\n         ,lfo\"\"          ,lfo\"\"      #  \"v6a,           \"v6a,\r\n     ,lfo\"\"          ,lfo\"\"         ,#.    \"v6a,           \"v6a,\r\n ,gPPR8,         ,lfo\"\"          ,lfo8a|      \"v6a,           \"v6a,\r\ndP'   `Yb    ,lfo\"\"          ,lfo\"\"   \"v6a,  ,lfo\"\"          ,lfo\"8\r\n8)     (8,lfo\"\"          ,lfo\"\"          v688\"\"          ,lfo\"\"   8\r\nYb     d8P\"          ,lfo\"\"          ,lfo\"\"          ,lfo\"\"       8\r\n \"8ggg8\"         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"          ,8\r\n             ,gPPR8,         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            dP'   `Yb    ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            8)     (8,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            Yb     d8P\"          ,lfo\"\"          ,lfo\"\"\r\n             \"8ggg8\"         ,lfo\"\"          ,lfo\"\"   \r\n                         ,gPPR8,         ,lfo\"\"       \r\n                        dP'   `Yb    ,lfo\"\"\r\n                        8)     (8,lfo\"\"\r\n                        Yb     d8P\"\r\n                         \"8ggg8\"" +
-    chalk.cyan('\n\nWelcome to the Spring Boot Webapp Generator by Lerk!')));
+    return this.prompt(prompts).then(props => {
+      this.emailAddress = props.emailAddress;
+      this.userName = props.userName;
+      this.packageName = props.packageName;
+      this.baseName = props.baseName;
+      this.useScmAndDm = props.useScmAndDm;
+      this.serviceDescription = props.serviceDescription;
+      this.useBootstrapAlpha = props.useBootstrapAlpha;
+      this.appName = props.appName;
+      this.useDocker = props.useDocker;
+    });
+  }
 
-  console.log(chalk.green('Newest feature: ') + chalk.white('Docker is now optional'));
+  writing() {
 
-  var prompts = [
-    {
-      type: 'string',
-      name: 'userName',
-      message: '(1/9) What is your name?',
-      default: 'John Doe'
-    },
-    {
-      type: 'string',
-      name: 'emailAddress',
-      message: '(2/9) What is your mail address?',
-      default: 'john@example.com'
-    },
-    {
-      type: 'string',
-      name: 'packageName',
-      message: '(3/9) What is your default package name?',
-      default: 'com.example.myapp'
-    },
-    {
-      type: 'string',
-      name: 'baseName',
-      message: '(4/9) What is the base name of the app?',
-      default: 'myapp'
-    }, {
-      type: 'string',
-      name: 'appName',
-      message: '(5/9) What is the title of your app?',
-      default: 'Demo App'
-    },
-    {
-      type: 'string',
-      name: 'serviceDescription',
-      message: '(6/9) Give a short description of your project.',
-      default: 'This app does awesome things.'
-    },
-    {
-      type: 'confirm',
-      name: 'useScmAndDm',
-      message: '(7/9) Do you want to use SCM and Distribution Management?',
-      default: false
-    },
-    {
-      type: 'confirm',
-      name: 'useBootstrapAlpha',
-      message: '(8/9) Do you want to use Bootstrap 4 (alpha2)?',
-      default: true
-    },
-    {
-      type: 'confirm',
-      name: 'useDocker',
-      message: '(9/9) Do you want to use Docker?',
-      default: true
+    // ----------------------------
+    // Webapp
+    // ----------------------------
+    const packageFolder = this.packageName.replace(/\./g, '/');
+    const javaDir = 'src/main/java/' + packageFolder + '/';
+    const resourceDir = 'src/main/resources/';
+    const basename = this.baseName + '/';
+    chalk.white('basename is: ' + basename);
+    chalk.white('package folder is: ' + javaDir);
+    const javaDirTemplate = 'src/main/java/package/';
+    const resourceDirTemplate = 'src/main/resources/';
+
+    // Project
+    this.fs.copyTpl(this.templatePath('pom.xml'), this.destinationPath('pom.xml'), this);
+
+    // Java - base
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'App.java'), this.destinationPath(javaDir + 'App.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'AppAuthenticationProvider.java'), this.destinationPath(javaDir + 'AppAuthenticationProvider.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'Consts.java'), this.destinationPath(javaDir + 'Consts.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'MessageByLocaleService.java'), this.destinationPath(javaDir + 'MessageByLocaleService.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'MvcConfig.java'), this.destinationPath(javaDir + 'MvcConfig.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'SecurityConfig.java'), this.destinationPath(javaDir + 'SecurityConfig.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'PasswordStorage.java'), this.destinationPath(javaDir + 'PasswordStorage.java'), this);
+
+    // Java - controllers
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'controllers/AppErrorController.java'), this.destinationPath(javaDir + 'controllers/AppErrorController.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'controllers/HomeController.java'), this.destinationPath(javaDir + 'controllers/HomeController.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'controllers/LoginController.java'), this.destinationPath(javaDir + 'controllers/LoginController.java'), this);
+
+    // Java - entities
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'entities/Config.java'), this.destinationPath(javaDir + 'entities/Config.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'entities/User.java'), this.destinationPath(javaDir + 'entities/User.java'), this);
+
+    // Java - mail
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'mail/MailMan.java'), this.destinationPath(javaDir + 'mail/MailMan.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'mail/MailProps.java'), this.destinationPath(javaDir + 'mail/MailProps.java'), this);
+
+    // Java - repos
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'repositories/SysConfigRepository.java'), this.destinationPath(javaDir + 'repositories/SysConfigRepository.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'repositories/UserRepository.java'), this.destinationPath(javaDir + 'repositories/UserRepository.java'), this);
+
+
+    // Resources - base
+    this.fs.copyTpl(this.templatePath(resourceDirTemplate + 'logback.xml'), this.destinationPath(resourceDir + 'logback.xml'), this);
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'application.properties'), this.destinationPath(resourceDir + 'application.properties'));
+
+    // Resources - locale
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'locale/messages_de.properties'), this.destinationPath(resourceDir + 'locale/messages_de.properties'));
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'locale/messages_en.properties'), this.destinationPath(resourceDir + 'locale/messages_en.properties'));
+
+    // Resources - static/js
+    if (this.useBootstrapAlpha) {
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bootstrap.js'), this.destinationPath(resourceDir + 'static/js/bootstrap.js'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bootstrap.min.js'), this.destinationPath(resourceDir + 'static/js/bootstrap.min.js'));
+    } else {
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bs3/bootstrap.js'), this.destinationPath(resourceDir + 'static/js/bootstrap.js'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bs3/bootstrap.min.js'), this.destinationPath(resourceDir + 'static/js/bootstrap.min.js'));
     }
-  ];
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/jquery.min.js'), this.destinationPath(resourceDir + 'static/js/jquery.min.js'));
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/tether.min.js'), this.destinationPath(resourceDir + 'static/js/tether.min.js'));
 
-  this.prompt(prompts, function (props) {
-    this.emailAddress = props.emailAddress;
-    this.userName = props.userName;
-    this.packageName = props.packageName;
-    this.baseName = props.baseName;
-    this.useScmAndDm = props.useScmAndDm;
-    this.serviceDescription = props.serviceDescription;
-    this.useBootstrapAlpha = props.useBootstrapAlpha;
-    this.appName = props.appName;
-    this.useDocker = props.useDocker;
-    cb();
-  }.bind(this));
-};
+    // Resources - static/css
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/index.css'), this.destinationPath(resourceDir + 'static/css/index.css'));
+    if (this.useBootstrapAlpha) {
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.css'), this.destinationPath(resourceDir + 'static/css/bootstrap.css'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.css.map'), this.destinationPath(resourceDir + 'static/css/bootstrap.css.map'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.min.css'), this.destinationPath(resourceDir + 'static/css/bootstrap.min.css'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.min.css.map'), this.destinationPath(resourceDir + 'static/css/bootstrap.min.css.map'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/glyphicons.css'), this.destinationPath(resourceDir + 'static/css/glyphicons.css'));
+    } else {
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bs3/bootstrap.css'), this.destinationPath(resourceDir + 'static/css/bootstrap.css'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bs3/bootstrap.css.map'), this.destinationPath(resourceDir + 'static/css/bootstrap.css.map'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bs3/bootstrap.min.css'), this.destinationPath(resourceDir + 'static/css/bootstrap.min.css'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bs3/bootstrap.min.css.map'), this.destinationPath(resourceDir + 'static/css/bootstrap.min.css.map'));
+    }
 
-SpringGenerator.prototype.app = function app() {
-  // ----------------------------
-  // Webapp
-  // ----------------------------
-  var packageFolder = this.packageName.replace(/\./g, '/');
-  var javaDir = 'src/main/java/' + packageFolder + '/';
-  var resourceDir = 'src/main/resources/';
-  var basename = this.baseName + '/';
-  chalk.white('basename is: ' + basename);
-  chalk.white('package folder is: ' + javaDir);
-  var javaDirTemplate = 'src/main/java/package/';
-  var resourceDirTemplate = 'src/main/resources/';
+    //Resources - static/fonts
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.eot'), this.destinationPath(resourceDir + 'static/fonts/glyphicons-halflings-regular.eot'));
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.svg'), this.destinationPath(resourceDir + 'static/fonts/glyphicons-halflings-regular.svg'));
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.ttf'), this.destinationPath(resourceDir + 'static/fonts/glyphicons-halflings-regular.ttf'));
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.woff'), this.destinationPath(resourceDir + 'static/fonts/glyphicons-halflings-regular.woff'));
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.woff2'), this.destinationPath(resourceDir + 'static/fonts/glyphicons-halflings-regular.woff2'));
 
-  // Project
-  this.template('pom.xml', 'pom.xml', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+    // Resources - static/images
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/images/usr_default.jpg'), this.destinationPath(resourceDir + 'static/images/usr_default.jpg'));
 
-  // Java - base
-  this.template(javaDirTemplate + 'App.java', javaDir + 'App.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'AppAuthenticationProvider.java', javaDir + 'AppAuthenticationProvider.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'Consts.java', javaDir + 'Consts.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'MessageByLocaleService.java', javaDir + 'MessageByLocaleService.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'MvcConfig.java', javaDir + 'MvcConfig.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'SecurityConfig.java', javaDir + 'SecurityConfig.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'PasswordStorage.java', javaDir + 'PasswordStorage.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+    if (this.useBootstrapAlpha) {
 
-  // Java - controllers
-  this.template(javaDirTemplate + 'controllers/AppErrorController.java', javaDir + 'controllers/AppErrorController.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'controllers/HomeController.java', javaDir + 'controllers/HomeController.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'controllers/LoginController.java', javaDir + 'controllers/LoginController.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+      // Resources - templates
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/register.html'), this.destinationPath(resourceDir + 'templates/register.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/platform.html'), this.destinationPath(resourceDir + 'templates/platform.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/login.html'), this.destinationPath(resourceDir + 'templates/login.html'));
 
-  // Java - entities
-  this.template(javaDirTemplate + 'entities/Config.java', javaDir + 'entities/Config.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'entities/User.java', javaDir + 'entities/User.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+      // Resources - templates/fragments
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/navbar.html'), this.destinationPath(resourceDir + 'templates/fragments/navbar.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/footer.html'), this.destinationPath(resourceDir + 'templates/fragments/footer.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/error.html'), this.destinationPath(resourceDir + 'templates/fragments/error.html'));
 
-  // Java - mail
-  this.template(javaDirTemplate + 'mail/MailMan.java', javaDir + 'mail/MailMan.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'mail/MailProps.java', javaDir + 'mail/MailProps.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+      // Resources - templates/fragments/reception
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/reception/content_landing.html'), this.destinationPath(resourceDir + 'templates/fragments/reception/content_landing.html'));
 
-  // Java - repos
-  this.template(javaDirTemplate + 'repositories/SysConfigRepository.java', javaDir + 'repositories/SysConfigRepository.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(javaDirTemplate + 'repositories/UserRepository.java', javaDir + 'repositories/UserRepository.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+      // Resources - templates/fragments/backroom
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/backroom/content_main.html'), this.destinationPath(resourceDir + 'templates/fragments/backroom/content_main.html'));
 
+    } else {
 
-  // Resources - base
-  this.template(resourceDirTemplate + 'logback.xml', resourceDir + 'logback.xml', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-  this.template(resourceDirTemplate + 'application.properties', resourceDir + 'application.properties', this, {});
+      // Resources - templates
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/register.html'), this.destinationPath(resourceDir + 'templates/register.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/platform.html'), this.destinationPath(resourceDir + 'templates/platform.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/login.html'), this.destinationPath(resourceDir + 'templates/login.html'));
 
-  // Resources - locale
-  this.template(resourceDirTemplate + 'locale/messages_de.properties', resourceDir + 'locale/messages_de.properties', this, {});
-  this.template(resourceDirTemplate + 'locale/messages_en.properties', resourceDir + 'locale/messages_en.properties', this, {});
+      // Resources - templates/fragments
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/fragments/navbar.html'), this.destinationPath(resourceDir + 'templates/fragments/navbar.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/fragments/footer.html'), this.destinationPath(resourceDir + 'templates/fragments/footer.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/fragments/error.html'), this.destinationPath(resourceDir + 'templates/fragments/error.html'));
 
-  // Resources - static/js
-  if (this.useBootstrapAlpha) {
-    this.template(resourceDirTemplate + 'static/js/bootstrap.js', resourceDir + 'static/js/bootstrap.js', this, {});
-    this.template(resourceDirTemplate + 'static/js/bootstrap.min.js', resourceDir + 'static/js/bootstrap.min.js', this, {});
-  } else {
-    this.template(resourceDirTemplate + 'static/js/bs3/bootstrap.js', resourceDir + 'static/js/bootstrap.js', this, {});
-    this.template(resourceDirTemplate + 'static/js/bs3/bootstrap.min.js', resourceDir + 'static/js/bootstrap.min.js', this, {});
-  }
-  this.template(resourceDirTemplate + 'static/js/jquery.min.js', resourceDir + 'static/js/jquery.min.js', this, {});
-  this.template(resourceDirTemplate + 'static/js/tether.min.js', resourceDir + 'static/js/tether.min.js', this, {});
+      // Resources - templates/fragments/reception
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/fragments/reception/content_landing.html'), this.destinationPath(resourceDir + 'templates/fragments/reception/content_landing.html'));
 
-  // Resources - static/css
-  this.template(resourceDirTemplate + 'static/css/index.css', resourceDir + 'static/css/index.css', this, {});
-  if (this.useBootstrapAlpha) {
-    this.template(resourceDirTemplate + 'static/css/bootstrap.css', resourceDir + 'static/css/bootstrap.css', this, {});
-    this.template(resourceDirTemplate + 'static/css/bootstrap.css.map', resourceDir + 'static/css/bootstrap.css.map', this, {});
-    this.template(resourceDirTemplate + 'static/css/bootstrap.min.css', resourceDir + 'static/css/bootstrap.min.css', this, {});
-    this.template(resourceDirTemplate + 'static/css/bootstrap.min.css.map', resourceDir + 'static/css/bootstrap.min.css.map', this, {});
-    this.template(resourceDirTemplate + 'static/css/glyphicons.css', resourceDir + 'static/css/glyphicons.css', this, {});
-  } else {
-    this.template(resourceDirTemplate + 'static/css/bs3/bootstrap.css', resourceDir + 'static/css/bootstrap.css', this, {});
-    this.template(resourceDirTemplate + 'static/css/bs3/bootstrap.css.map', resourceDir + 'static/css/bootstrap.css.map', this, {});
-    this.template(resourceDirTemplate + 'static/css/bs3/bootstrap.min.css', resourceDir + 'static/css/bootstrap.min.css', this, {});
-    this.template(resourceDirTemplate + 'static/css/bs3/bootstrap.min.css.map', resourceDir + 'static/css/bootstrap.min.css.map', this, {});
-  }
+      // Resources - templates/fragments/backroom
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/fragments/backroom/content_main.html'), this.destinationPath(resourceDir + 'templates/fragments/backroom/content_main.html'));
 
-  //Resources - static/fonts
-  this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.eot', resourceDir + 'static/fonts/glyphicons-halflings-regular.eot', this, {});
-  this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.svg', resourceDir + 'static/fonts/glyphicons-halflings-regular.svg', this, {});
-  this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.ttf', resourceDir + 'static/fonts/glyphicons-halflings-regular.ttf', this, {});
-  this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.woff', resourceDir + 'static/fonts/glyphicons-halflings-regular.woff', this, {});
-  this.template(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.woff2', resourceDir + 'static/fonts/glyphicons-halflings-regular.woff2', this, {});
+    }
 
-  // Resources - static/images
-  this.template(resourceDirTemplate + 'static/images/usr_default.jpg', resourceDir + 'static/images/usr_default.jpg', this, {});
+    // Base folder stuff
+    this.fs.copy(this.templatePath('.npmignore'), this.destinationPath('.gitignore'));
+    this.fs.copy(this.templatePath('mongodb.conf'), this.destinationPath('mongodb.conf'));
+    this.fs.copy(this.templatePath('README.md'), this.destinationPath('README.md'));
+    this.fs.copy(this.templatePath('generateKeystore.sh'), this.destinationPath('generateKeystore.sh'));
 
-  if (this.useBootstrapAlpha) {
-
-    // Resources - templates
-    this.template(resourceDirTemplate + 'templates/register.html', resourceDir + 'templates/register.html', this, {});
-    this.template(resourceDirTemplate + 'templates/platform.html', resourceDir + 'templates/platform.html', this, {});
-    this.template(resourceDirTemplate + 'templates/login.html', resourceDir + 'templates/login.html', this, {});
-
-    // Resources - templates/fragments
-    this.template(resourceDirTemplate + 'templates/fragments/navbar.html', resourceDir + 'templates/fragments/navbar.html', this, {});
-    this.template(resourceDirTemplate + 'templates/fragments/footer.html', resourceDir + 'templates/fragments/footer.html', this, {});
-    this.template(resourceDirTemplate + 'templates/fragments/error.html', resourceDir + 'templates/fragments/error.html', this, {});
-
-    // Resources - templates/fragments/reception
-    this.template(resourceDirTemplate + 'templates/fragments/reception/content_landing.html', resourceDir + 'templates/fragments/reception/content_landing.html', this, {});
-
-    // Resources - templates/fragments/backroom
-    this.template(resourceDirTemplate + 'templates/fragments/backroom/content_main.html', resourceDir + 'templates/fragments/backroom/content_main.html', this, {});
-
-  } else {
-
-    // Resources - templates
-    this.template(resourceDirTemplate + 'templates/bs3/register.html', resourceDir + 'templates/register.html', this, {});
-    this.template(resourceDirTemplate + 'templates/bs3/platform.html', resourceDir + 'templates/platform.html', this, {});
-    this.template(resourceDirTemplate + 'templates/bs3/login.html', resourceDir + 'templates/login.html', this, {});
-
-    // Resources - templates/fragments
-    this.template(resourceDirTemplate + 'templates/bs3/fragments/navbar.html', resourceDir + 'templates/fragments/navbar.html', this, {});
-    this.template(resourceDirTemplate + 'templates/bs3/fragments/footer.html', resourceDir + 'templates/fragments/footer.html', this, {});
-    this.template(resourceDirTemplate + 'templates/bs3/fragments/error.html', resourceDir + 'templates/fragments/error.html', this, {});
-
-    // Resources - templates/fragments/reception
-    this.template(resourceDirTemplate + 'templates/bs3/fragments/reception/content_landing.html', resourceDir + 'templates/fragments/reception/content_landing.html', this, {});
-
-    // Resources - templates/fragments/backroom
-    this.template(resourceDirTemplate + 'templates/bs3/fragments/backroom/content_main.html', resourceDir + 'templates/fragments/backroom/content_main.html', this, {});
+    // Docker stuff
+    if (this.useDocker) {
+      this.fs.copy(this.templatePath('startDocker.sh'), this.destinationPath('startDocker.sh'));
+      this.fs.copyTpl(this.templatePath('docker/docker-compose.yml'), this.destinationPath('docker-compose.yml'), this);
+      this.fs.copyTpl(this.templatePath('docker/Dockerfile'), this.destinationPath('docker/Dockerfile'), this);
+    }
+    this.config.set('emailAddress', this.emailAddress);
+    this.config.set('userName', this.userName);
+    this.config.set('packageName', this.packageName);
+    this.config.set('useScmAndDm', this.useScmAndDm); // I'm unsure whether it's good to keep this saved...
+    this.config.set('useDocker', this.useDocker);
 
   }
 
-  // Base folder stuff
-  this.template('.npmignore', '.gitignore', this, {});
-  this.template('mongodb.conf', 'mongodb.conf', this, {});
-  this.template('README.md', 'README.md', this, {});
-  this.template('generateKeystore.sh', 'generateKeystore.sh', this, {});
-
-  // Docker stuff
-  if (this.useDocker) {
-    this.template('startDocker.sh', 'startDocker.sh', this, {});
-    this.template('docker/docker-compose.yml', 'docker-compose.yml', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-    this.template('docker/Dockerfile', 'docker/Dockerfile', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+  install() {
+    if (this.useScmAndDm) {
+      console.log(chalk.dim('Running \'git init\'...'));
+      this.spawnCommand('git', ['init']);
+    }
   }
-  this.config.set('emailAddress', this.emailAddress);
-  this.config.set('userName', this.userName);
-  this.config.set('packageName', this.packageName);
-  this.config.set('useScmAndDm', this.useScmAndDm); // I'm unsure whether it's good to keep this saved...
-  this.config.set('packageFolder', packageFolder);
-  this.config.set('useDocker', this.useDocker);
-};
-
-SpringGenerator.prototype.projectfiles = function projectfiles() {
-
 };
