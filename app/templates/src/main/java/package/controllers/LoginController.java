@@ -1,21 +1,23 @@
 package <%=packageName%>.controllers;
 
-  import <%=packageName%>.Consts;
-  import <%=packageName%>.MessageByLocaleService;
-  import <%=packageName%>.entities.User;
-  import <%=packageName%>.repositories.SysConfigRepository;
-  import <%=packageName%>.repositories.UserRepository;
-  import <%=packageName%>.PasswordStorage;
-  import org.springframework.beans.factory.annotation.Autowired;
-  import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-  import org.springframework.stereotype.Controller;
-  import org.springframework.util.Assert;
-  import org.springframework.web.bind.annotation.ModelAttribute;
-  import org.springframework.web.bind.annotation.RequestMapping;
-  import org.springframework.web.bind.annotation.RequestMethod;
-  import org.springframework.web.servlet.ModelAndView;
+import <%=packageName%>.Consts;
+import <%=packageName%>.MessageByLocaleService;
+import <%=packageName%>.entities.User;
+import <%=packageName%>.repositories.SysConfigRepository;
+import <%=packageName%>.repositories.UserRepository;
+import <%=packageName%>.PasswordStorage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-  import java.util.HashMap;
+import java.util.HashMap;
 
 /**
  * Handles the login page.
@@ -34,6 +36,8 @@ public class LoginController {
 
   @Autowired
   private MessageByLocaleService messageByLocaleService;
+
+  Logger logger = LoggerFactory.getLogger(LoginController.class);
 
   /**
    * Builds the login page.

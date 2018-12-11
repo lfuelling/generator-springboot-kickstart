@@ -4,6 +4,7 @@ package <%=packageName%>;
   import <%=packageName%>.entities.User;
   import <%=packageName%>.repositories.SysConfigRepository;
   import <%=packageName%>.repositories.UserRepository;
+  import <%=packageName%>.PasswordStorage.CannotPerformOperationException;
   import org.slf4j.Logger;
   import org.slf4j.LoggerFactory;
   import org.springframework.beans.factory.annotation.Autowired;
@@ -118,7 +119,7 @@ public class App implements CommandLineRunner {
   /**
    * Creates a new root user and logs the password.
    */
-  private void createNewRootUser() {
+  private void createNewRootUser() throws CannotPerformOperationException {
     User root = new User();
     root.setId("0");
     root.setUsername("root");
