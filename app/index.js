@@ -7,7 +7,7 @@ module.exports = class extends Generator {
     console.log(chalk.dim("                                     ,a,\r\n                                 ,lfo\"\"v6a,\r\n                             ,lfo\"\"      \"v6a,\r\n                         ,lfo\"\"             \"v6a,\r\n                     ,lfo\"\"                    \"v6a,\r\n                 ,lfo\"\"          ,lfoa,           \"v6a,\r\n             ,lfo\"\"          ,lfo\"\" \"8v6a,           \"v6a,\r\n         ,lfo\"\"          ,lfo\"\"      #  \"v6a,           \"v6a,\r\n     ,lfo\"\"          ,lfo\"\"         ,#.    \"v6a,           \"v6a,\r\n ,gPPR8,         ,lfo\"\"          ,lfo8a|      \"v6a,           \"v6a,\r\ndP'   `Yb    ,lfo\"\"          ,lfo\"\"   \"v6a,  ,lfo\"\"          ,lfo\"8\r\n8)     (8,lfo\"\"          ,lfo\"\"          v688\"\"          ,lfo\"\"   8\r\nYb     d8P\"          ,lfo\"\"          ,lfo\"\"          ,lfo\"\"       8\r\n \"8ggg8\"         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"          ,8\r\n             ,gPPR8,         ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            dP'   `Yb    ,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            8)     (8,lfo\"\"          ,lfo\"\"          ,lfo\"\"\r\n            Yb     d8P\"          ,lfo\"\"          ,lfo\"\"\r\n             \"8ggg8\"         ,lfo\"\"          ,lfo\"\"   \r\n                         ,gPPR8,         ,lfo\"\"       \r\n                        dP'   `Yb    ,lfo\"\"\r\n                        8)     (8,lfo\"\"\r\n                        Yb     d8P\"\r\n                         \"8ggg8\"" +
       chalk.cyan('\n\nWelcome to the Spring Boot Webapp Generator by Lerk!')));
 
-    console.log(chalk.green('Newest feature: ') + chalk.white('\'git init\' is now run automatically'));
+    console.log(chalk.green('Newest feature: ') + chalk.white('Bootstrap 4 is now favored over v3. Both have been updated.'));
 
     const prompts = [
       {
@@ -53,9 +53,9 @@ module.exports = class extends Generator {
       },
       {
         type: 'confirm',
-        name: 'useBootstrapAlpha',
-        message: '(8/9) Do you want to use Bootstrap 4 (alpha2)?',
-        default: true
+        name: 'useBootstrapLegacy',
+        message: '(8/9) Do you want to use Bootstrap 3?',
+        default: false
       },
       {
         type: 'confirm',
@@ -72,7 +72,7 @@ module.exports = class extends Generator {
       this.baseName = props.baseName;
       this.useScmAndDm = props.useScmAndDm;
       this.serviceDescription = props.serviceDescription;
-      this.useBootstrapAlpha = props.useBootstrapAlpha;
+      this.useBootstrapLegacy = props.useBootstrapLegacy;
       this.appName = props.appName;
       this.useDocker = props.useDocker;
     });
@@ -131,30 +131,35 @@ module.exports = class extends Generator {
     this.fs.copy(this.templatePath(resourceDirTemplate + 'locale/messages_en.properties'), this.destinationPath(resourceDir + 'locale/messages_en.properties'));
 
     // Resources - static/js
-    if (this.useBootstrapAlpha) {
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bootstrap.js'), this.destinationPath(resourceDir + 'static/js/bootstrap.js'));
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bootstrap.min.js'), this.destinationPath(resourceDir + 'static/js/bootstrap.min.js'));
-    } else {
+    if (this.useBootstrapLegacy) {
       this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bs3/bootstrap.js'), this.destinationPath(resourceDir + 'static/js/bootstrap.js'));
       this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bs3/bootstrap.min.js'), this.destinationPath(resourceDir + 'static/js/bootstrap.min.js'));
+    } else {
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bootstrap.js'), this.destinationPath(resourceDir + 'static/js/bootstrap.js'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bootstrap.js.map'), this.destinationPath(resourceDir + 'static/js/bootstrap.js.map'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bootstrap.min.js'), this.destinationPath(resourceDir + 'static/js/bootstrap.min.js'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/bootstrap.min.js.map'), this.destinationPath(resourceDir + 'static/js/bootstrap.min.js.map'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/popper.min.js'), this.destinationPath(resourceDir + 'static/js/popper.min.js'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/popper.min.js.map'), this.destinationPath(resourceDir + 'static/js/popper.min.js.map'));
     }
     this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/jquery.min.js'), this.destinationPath(resourceDir + 'static/js/jquery.min.js'));
-    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/js/tether.min.js'), this.destinationPath(resourceDir + 'static/js/tether.min.js'));
 
     // Resources - static/css
     this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/index.css'), this.destinationPath(resourceDir + 'static/css/index.css'));
-    if (this.useBootstrapAlpha) {
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.css'), this.destinationPath(resourceDir + 'static/css/bootstrap.css'));
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.css.map'), this.destinationPath(resourceDir + 'static/css/bootstrap.css.map'));
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.min.css'), this.destinationPath(resourceDir + 'static/css/bootstrap.min.css'));
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.min.css.map'), this.destinationPath(resourceDir + 'static/css/bootstrap.min.css.map'));
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/glyphicons.css'), this.destinationPath(resourceDir + 'static/css/glyphicons.css'));
-    } else {
+
+    if (this.useBootstrapLegacy) {
       this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bs3/bootstrap.css'), this.destinationPath(resourceDir + 'static/css/bootstrap.css'));
       this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bs3/bootstrap.css.map'), this.destinationPath(resourceDir + 'static/css/bootstrap.css.map'));
       this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bs3/bootstrap.min.css'), this.destinationPath(resourceDir + 'static/css/bootstrap.min.css'));
       this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bs3/bootstrap.min.css.map'), this.destinationPath(resourceDir + 'static/css/bootstrap.min.css.map'));
+    } else {
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.css'), this.destinationPath(resourceDir + 'static/css/bootstrap.css'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.css.map'), this.destinationPath(resourceDir + 'static/css/bootstrap.css.map'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.min.css'), this.destinationPath(resourceDir + 'static/css/bootstrap.min.css'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/bootstrap.min.css.map'), this.destinationPath(resourceDir + 'static/css/bootstrap.min.css.map'));
     }
+
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'static/css/glyphicons.css'), this.destinationPath(resourceDir + 'static/css/glyphicons.css'));
 
     //Resources - static/fonts
     this.fs.copy(this.templatePath(resourceDirTemplate + 'static/fonts/glyphicons-halflings-regular.eot'), this.destinationPath(resourceDir + 'static/fonts/glyphicons-halflings-regular.eot'));
@@ -166,26 +171,7 @@ module.exports = class extends Generator {
     // Resources - static/images
     this.fs.copy(this.templatePath(resourceDirTemplate + 'static/images/usr_default.jpg'), this.destinationPath(resourceDir + 'static/images/usr_default.jpg'));
 
-    if (this.useBootstrapAlpha) {
-
-      // Resources - templates
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/register.html'), this.destinationPath(resourceDir + 'templates/register.html'));
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/platform.html'), this.destinationPath(resourceDir + 'templates/platform.html'));
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/login.html'), this.destinationPath(resourceDir + 'templates/login.html'));
-
-      // Resources - templates/fragments
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/navbar.html'), this.destinationPath(resourceDir + 'templates/fragments/navbar.html'));
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/footer.html'), this.destinationPath(resourceDir + 'templates/fragments/footer.html'));
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/error.html'), this.destinationPath(resourceDir + 'templates/fragments/error.html'));
-
-      // Resources - templates/fragments/reception
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/reception/content_landing.html'), this.destinationPath(resourceDir + 'templates/fragments/reception/content_landing.html'));
-
-      // Resources - templates/fragments/backroom
-      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/backroom/content_main.html'), this.destinationPath(resourceDir + 'templates/fragments/backroom/content_main.html'));
-
-    } else {
-
+    if (this.useBootstrapLegacy) {
       // Resources - templates
       this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/register.html'), this.destinationPath(resourceDir + 'templates/register.html'));
       this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/platform.html'), this.destinationPath(resourceDir + 'templates/platform.html'));
@@ -201,7 +187,22 @@ module.exports = class extends Generator {
 
       // Resources - templates/fragments/backroom
       this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/bs3/fragments/backroom/content_main.html'), this.destinationPath(resourceDir + 'templates/fragments/backroom/content_main.html'));
+    } else {
+      // Resources - templates
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/register.html'), this.destinationPath(resourceDir + 'templates/register.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/platform.html'), this.destinationPath(resourceDir + 'templates/platform.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/login.html'), this.destinationPath(resourceDir + 'templates/login.html'));
 
+      // Resources - templates/fragments
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/navbar.html'), this.destinationPath(resourceDir + 'templates/fragments/navbar.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/footer.html'), this.destinationPath(resourceDir + 'templates/fragments/footer.html'));
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/error.html'), this.destinationPath(resourceDir + 'templates/fragments/error.html'));
+
+      // Resources - templates/fragments/reception
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/reception/content_landing.html'), this.destinationPath(resourceDir + 'templates/fragments/reception/content_landing.html'));
+
+      // Resources - templates/fragments/backroom
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'templates/fragments/backroom/content_main.html'), this.destinationPath(resourceDir + 'templates/fragments/backroom/content_main.html'));
     }
 
     // Base folder stuff
@@ -219,9 +220,8 @@ module.exports = class extends Generator {
     this.config.set('emailAddress', this.emailAddress);
     this.config.set('userName', this.userName);
     this.config.set('packageName', this.packageName);
-    this.config.set('useScmAndDm', this.useScmAndDm); // I'm unsure whether it's good to keep this saved...
+    this.config.set('useScmAndDm', this.useScmAndDm);
     this.config.set('useDocker', this.useDocker);
-
   }
 
   install() {
